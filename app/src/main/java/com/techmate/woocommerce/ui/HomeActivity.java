@@ -20,6 +20,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -32,7 +33,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         binding.imgSearch.setOnClickListener(this);
 
     }
-
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     private void setActionBarTitle(int position) {
 
-        switch (position){
+        switch (position) {
             case 0:
                 binding.txtTitle.setVisibility(View.GONE);
                 binding.imgLogo.setVisibility(View.VISIBLE);

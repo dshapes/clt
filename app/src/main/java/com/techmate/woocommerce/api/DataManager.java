@@ -27,7 +27,6 @@ public class DataManager {
     public DataManager(Context mContext) {
         this.context = mContext;
         prefManager = new PrefManager(mContext);
-        apiService = ApiClient.getClient();
     }
 
     public static DataManager getInstance(Context mContext) {
@@ -38,6 +37,8 @@ public class DataManager {
     }
 
     public void getData(String path, Map<String, String> hashMap, final ConfirmationCallback confirmationCallback){
+
+        apiService = ApiClient.getPOSTClient(false);
 
         this.confirmationCallback = confirmationCallback;
         Observable<HomeResponse> mainObservable = apiService.getData(path, hashMap);
@@ -66,6 +67,38 @@ public class DataManager {
     }
 
     public void getDataByGet(String path, final ConfirmationCallback confirmationCallback){
+
+        apiService = ApiClient.getPOSTClient(true);
+
+        this.confirmationCallback = confirmationCallback;
+        Observable<HomeResponse> mainObservable = apiService.getDataByGetMethod(path);
+        if (mainObservable != null) {
+            mainObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(result -> result)
+                    .subscribe(new Consumer<HomeResponse>() {
+                        @Override
+                        public void accept(HomeResponse main) throws Exception {
+                            if (main != null) {
+                                confirmationCallback.onSuccess(main);
+                            } else {
+                                confirmationCallback.onError("Error");
+                            }
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            confirmationCallback.onError("" + throwable.getMessage());
+                        }
+                    });
+        }
+
+
+    }
+
+    public void getLandingPageData(String path, final ConfirmationCallback confirmationCallback){
+
+        apiService = ApiClient.getPOSTWPClient();
 
         this.confirmationCallback = confirmationCallback;
         Observable<HomeResponse> mainObservable = apiService.getDataByGetMethod(path);

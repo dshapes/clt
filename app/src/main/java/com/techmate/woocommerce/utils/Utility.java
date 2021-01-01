@@ -69,6 +69,7 @@ public class Utility {
     }
 
     public static boolean isConnectedToInternet(Context context) {
+
         if (context != null) {
 
             ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -269,7 +270,6 @@ public class Utility {
                 if (mCurrentAnimator != null) {
                     mCurrentAnimator.cancel();
                 }
-
 
                 // Animate the four positioning/sizing properties in parallel,
                 // back to their original values.

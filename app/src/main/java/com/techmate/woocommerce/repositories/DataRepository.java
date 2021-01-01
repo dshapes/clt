@@ -1,18 +1,7 @@
 package com.techmate.woocommerce.repositories;
 
-
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import com.techmate.woocommerce.api.ApiClient;
 import com.techmate.woocommerce.api.ApiService;
-import com.techmate.woocommerce.model.HomeResponse;
-
-import java.util.Map;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DataRepository {
 
@@ -20,7 +9,7 @@ public class DataRepository {
     private static DataRepository projectRepository;
 
     private DataRepository() {
-        apiService = ApiClient.getClient();
+        apiService = ApiClient.getPOSTClient(false);
     }
 
     public synchronized static DataRepository getInstance() {

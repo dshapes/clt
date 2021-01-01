@@ -67,4 +67,29 @@ public class MainModel implements ViewPresenter.MainPresenter {
             mainView.hideProgressBar();
         }
     }
+
+    @Override
+    public void getLandingPageData(String path) {
+
+        mainView.showProgressBar();
+        if (mainView.checkInternet()) {
+            dataManager.getLandingPageData(path, new ConfirmationCallback() {
+                @Override
+                public void onSuccess(HomeResponse main) {
+                    mainView.mainSuccess(main, "");
+                    mainView.hideProgressBar();
+                }
+
+                @Override
+                public void onError(String err) {
+                    mainView.mainError(err);
+                    mainView.hideProgressBar();
+                }
+            });
+        } else {
+            mainView.mainValidateError("");
+            mainView.hideProgressBar();
+        }
+
+    }
 }

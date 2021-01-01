@@ -1,67 +1,56 @@
 package com.techmate.woocommerce.model;
 
-import com.google.gson.annotations.Expose;
+import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+public class Data{
 
-public class Data {
+	@SerializedName("trending-product")
+	private List<TrendingProductItem> trendingProduct;
 
-	@SerializedName("status")
-	private int status;
+	@SerializedName("slider")
+	private List<String> slider;
 
-	@SerializedName("data")
-	@Expose
-	private Data_ data;
-	@SerializedName("ID")
-	@Expose
-	private Integer iD;
-	@SerializedName("caps")
-	@Expose
-	private Caps caps;
-	@SerializedName("cap_key")
-	@Expose
-	private String capKey;
-	@SerializedName("roles")
-	@Expose
-	private List<String> roles = null;
-	@SerializedName("allcaps")
-	@Expose
-	private Allcaps allcaps;
-	@SerializedName("filter")
-	@Expose
-	private Object filter;
+	@SerializedName("category-list")
+	private List<CategoryListItem> categoryList;
 
+	@SerializedName("banner")
+	private List<String> banner;
 
-	public Data_ getData() {
-		return data;
+	@SerializedName("flash-sale")
+	private List<FlashSaleItem> flashSale;
+
+	@SerializedName("occasion-wear")
+	private List<OccasionWearItem> occasionWear;
+
+	@SerializedName("bottomBanner")
+	private String bottomBanner;
+
+	public List<TrendingProductItem> getTrendingProduct(){
+		return trendingProduct;
 	}
 
-	public Integer getiD() {
-		return iD;
+	public List<String> getSlider(){
+		return slider;
 	}
 
-	public Caps getCaps() {
-		return caps;
+	public List<CategoryListItem> getCategoryList(){
+		return categoryList;
 	}
 
-	public String getCapKey() {
-		return capKey;
+	public List<String> getBanner(){
+		return banner;
 	}
 
-	public List<String> getRoles() {
-		return roles;
+	public List<FlashSaleItem> getFlashSale(){
+		return flashSale;
 	}
 
-	public Allcaps getAllcaps() {
-		return allcaps;
+	public List<OccasionWearItem> getOccasionWear(){
+		return occasionWear;
 	}
 
-	public Object getFilter() {
-		return filter;
-	}
-
-	public int getStatus(){
-		return status;
+	public String getBottomBanner(){
+		return bottomBanner;
 	}
 }

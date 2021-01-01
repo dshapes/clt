@@ -26,6 +26,7 @@ public interface ViewPresenter {
 
         void getData(String path, Map<String, String> hashMap);
         void getDataByGet(String path);
+        void getLandingPageData(String path);
 
     }
 }

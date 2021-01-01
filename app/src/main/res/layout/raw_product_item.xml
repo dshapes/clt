@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_main"
     android:layout_width="match_parent"
@@ -10,10 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_offer"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgProduct"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:background="@color/white" />
 
         <FrameLayout
@@ -25,7 +28,7 @@
                 android:id="@+id/img_flag"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_18sdp"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -40,8 +43,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/montserrat_semibold"
-                    android:textColor="@color/white"
                     android:includeFontPadding="false"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_7sdp" />
 
                 <TextView
@@ -49,66 +52,92 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="off"
                     android:includeFontPadding="false"
+                    android:text="off"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_6sdp" />
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/img_wishlist"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:padding="@dimen/_6sdp"
+            <com.like.LikeButton
+                android:id="@+id/imgWishlist"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:layout_gravity="right"
-                android:src="@drawable/ic_wish"/>
+                android:padding="@dimen/_5sdp"
+                app:like_drawable="@drawable/ic_heart_fill"
+                app:unlike_drawable="@drawable/ic_wish"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/frameWishlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/frame_circular"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgDelete"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_gravity="right"
+                android:src="@drawable/ic_delete"
+                app:civ_circle_background_color="@color/white" />
 
         </FrameLayout>
 
     </FrameLayout>
 
     <TextView
-        android:id="@+id/txt_name"
+        android:id="@+id/txtProductName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
-        tools:text="Printed A-Line Tunic"
-        android:textSize="@dimen/_11ssp"
         android:layout_marginTop="@dimen/_5sdp"
+        android:ellipsize="marquee"
+        android:fontFamily="@font/montserrat_medium"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:paddingLeft="@dimen/_5sdp"
         android:textColor="@color/maroon"
-        android:fontFamily="@font/montserrat_medium"/>
+        android:textSize="@dimen/_11ssp"
+        tools:text="Printed A-Line Tunic"
+        android:paddingStart="@dimen/_5sdp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/_5sdp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/_5sdp"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingTop="@dimen/_5sdp">
 
         <TextView
-            android:id="@+id/txt_main_price"
+            android:id="@+id/txtYourPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
             android:singleLine="true"
-            tools:text="Rs 600"
-            android:textSize="@dimen/_10ssp"
             android:textColor="@color/red"
-            android:fontFamily="@font/montserrat_medium"/>
+            android:textSize="@dimen/_10ssp"
+            android:text="Rs 600" />
 
         <TextView
-            android:id="@+id/txt_line_price"
+            android:id="@+id/txtOriginalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
+            android:fontFamily="@font/montserrat_medium"
             android:paddingLeft="@dimen/_5sdp"
-            tools:text="Rs 600"
-            android:textSize="@dimen/_10ssp"
+            android:singleLine="true"
             android:textColor="@color/meduim_grey"
-            android:fontFamily="@font/montserrat_medium"/>
+            android:textSize="@dimen/_10ssp"
+            android:text="Rs 1000" />
 
     </LinearLayout>
-
 
 
 </LinearLayout>

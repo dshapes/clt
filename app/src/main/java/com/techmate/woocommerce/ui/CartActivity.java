@@ -12,6 +12,7 @@ import com.techmate.woocommerce.R;
 import com.techmate.woocommerce.adapter.CartItemAdapter;
 import com.techmate.woocommerce.databinding.ActivityCartBinding;
 
+
 public class CartActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityCartBinding binding;
@@ -30,12 +31,11 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         binding.recyclerCart.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                outRect.set((int) getResources().getDimension(R.dimen._10sdp),10,(int) getResources().getDimension(R.dimen._10sdp),10);
+                outRect.set(10,10,10,10);
             }
         });
         adapter = new CartItemAdapter(context);
         binding.recyclerCart.setAdapter(adapter);
-
     }
 
     @Override

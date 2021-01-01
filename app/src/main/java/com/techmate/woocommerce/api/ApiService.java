@@ -31,6 +31,4 @@ public interface ApiService {
     @GET("{path}")
     Observable<HomeResponse> getDataByGetMethod(@Path(value="path", encoded = true) String path);
 
-
-
 }

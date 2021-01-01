@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static ApiService getClient() {
+    public static ApiService getPOSTClient(boolean isGetMethod) {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.level(HttpLoggingInterceptor.Level.BODY);
@@ -32,7 +32,28 @@ public class ApiClient {
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new ApiInterceptor()).addInterceptor(interceptor).build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.API_BASE_URL)
+                .baseUrl(isGetMethod ? Constants.API_GET_BASE_URL : Constants.API_BASE_URL)
+                .client(client)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        return retrofit.create(ApiService.class);
+    }
+
+    public static ApiService getPOSTWPClient() {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.level(HttpLoggingInterceptor.Level.BODY);
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new ApiInterceptor()).addInterceptor(interceptor).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.API_GET_WP_BASE_URL)
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))

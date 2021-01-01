@@ -8,10 +8,18 @@
     android:background="@color/white">
 
     <ImageView
+        android:id="@+id/imgBanner"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_100sdp"
-        android:layout_margin="@dimen/_20sdp"
+        android:layout_margin="@dimen/_10sdp"
         android:src="@drawable/category_banner"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCategories"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_below="@id/imgBanner"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

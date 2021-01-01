@@ -2,7 +2,7 @@ package com.techmate.woocommerce.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HomeResponse {
+public class HomeResponse{
 
 	@SerializedName("code")
 	private int code;

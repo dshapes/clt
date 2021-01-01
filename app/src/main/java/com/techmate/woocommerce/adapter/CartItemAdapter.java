@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.techmate.woocommerce.R;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHolder> {
@@ -27,11 +29,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CartItemAdapter.ViewHolder holder, int position) {
+        Glide.with(context).load("https://clothinaa.com/wp-content/uploads/2020/11/KR720KSL.jpg").centerInside().into(holder.imgCartItem);
     }
 
     @Override
     public int getItemCount() {
-        return 20;
+        return 2;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
