@@ -60,9 +60,9 @@ public class OccassionWearAdapter extends RecyclerView.Adapter<OccassionWearAdap
             holder.txtYourPrice.setText(productItem.getSalePrice());
         }
 
+        holder.txtOriginalPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         if (!TextUtils.isEmpty(productItem.getPrice())){
             holder.txtOriginalPrice.setText(productItem.getPrice());
-            holder.txtOriginalPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

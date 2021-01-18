@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgClose"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:src="@drawable/ic_close"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtConfirmation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/apply_promo"
+        android:textSize="@dimen/_22ssp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_below="@id/imgClose"
+        android:textColor="@color/maroon"
+        android:fontFamily="@font/montserrat_bold"/>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtPromoCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_specific_code"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textSize="@dimen/_11ssp"
+        android:layout_below="@id/txtConfirmation"
+        android:drawableEnd="@drawable/right_arrow"
+        android:drawableRight="@drawable/right_arrow" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

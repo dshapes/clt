@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/llActions"
+        android:gravity="center">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgConfirmation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/confirm"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtConfirmation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmation"
+        android:gravity="center"
+        android:textSize="@dimen/_22ssp"
+        android:textColor="@color/maroon"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_below="@id/imgConfirmation"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirmation_msg"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textSize="@dimen/_11ssp"
+        android:layout_below="@id/txtConfirmation"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_10sdp">
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDeleteAdd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/rounded_button"
+            android:onClick="registerUser"
+            android:textAllCaps="false"
+            android:text="@string/delete"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white" />
+
+        <FrameLayout
+            android:id="@+id/frameCancel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@drawable/rounded_backgound"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="@color/light_blue_1"
+                android:textSize="@dimen/_12ssp" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -3,286 +3,294 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.core.widget.NestedScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/_40sdp"
-        android:scrollbars="none">
+        android:layout_marginBottom="@dimen/_40sdp">
 
-        <RelativeLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white">
-
-            <com.techmate.woocommerce.control.AutoScrollViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp" />
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_below="@id/viewPager"
-                android:layout_centerInParent="true"
-                app:tabBackground="@drawable/tab_selector"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp"
-                app:tabPadding="-10dp" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/txtHeading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tab_layout"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center"
-                android:textSize="@dimen/_14ssp"
-                tools:text="@string/your_cart" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerBanner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                android:layout_below="@id/txtHeading"
-                android:layout_marginTop="@dimen/_5sdp" />
+            android:scrollbars="none">
 
             <RelativeLayout
-                android:id="@+id/relHeading"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_below="@id/recyclerBanner"
-                android:visibility="gone"
-                tools:visibility="visible"
-                android:paddingEnd="@dimen/_10sdp"
-                android:paddingRight="@dimen/_10sdp">
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <com.techmate.woocommerce.control.AutoScrollViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_150sdp" />
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_below="@id/viewPager"
+                    android:layout_centerInParent="true"
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabPadding="-10dp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtHeadingTrending"
+                    android:id="@+id/txtHeading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/tab_layout"
                     android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/montserrat_bold"
                     android:gravity="center"
-                    android:textSize="@dimen/_14ssp"
-                    tools:text="@string/your_cart" />
+                    android:textSize="@dimen/_13ssp"
+                    tools:text="@string/now_or_never" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtViewAll"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerBanner"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/imgArrow"
-                    android:layout_toLeftOf="@id/imgArrow"
-                    android:textColor="@color/red"
-                    android:text="@string/all" />
+                    android:layout_below="@id/txtHeading"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2" />
+
+                <RelativeLayout
+                    android:id="@+id/relHeading"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/recyclerBanner"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:visibility="gone"
+                    tools:ignore="RtlSymmetry"
+                    tools:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtHeadingTrending"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:textSize="@dimen/_13ssp"
+                        tools:text="@string/trending" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtViewAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/imgArrow"
+                        android:layout_toLeftOf="@id/imgArrow"
+                        android:text="@string/all"
+                        android:textColor="@color/red" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgArrow"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow"
+                        android:tint="@color/red" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerTrending"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/relHeading"
+                    android:layout_marginTop="@dimen/_minus4sdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2" />
+
+                <RelativeLayout
+                    android:id="@+id/relHeadingSale"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_below="@id/recyclerTrending"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtHeadingSale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:textSize="@dimen/_13ssp"
+                        tools:text="@string/flash_sale" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtViewAllSale"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/imgArrowSale"
+                        android:layout_toLeftOf="@id/imgArrowSale"
+                        android:text="@string/all"
+                        android:textColor="@color/red" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgArrowSale"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow"
+                        android:tint="@color/red" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerFlashSale"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/relHeadingSale"
+                    android:layout_marginTop="@dimen/_minus4sdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2" />
+
+                <RelativeLayout
+                    android:id="@+id/relHeadingCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/recyclerFlashSale"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtHeadingCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:textSize="@dimen/_13ssp"
+                        android:text="@string/category" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtViewAllCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/imgArrowCategory"
+                        android:layout_toLeftOf="@id/imgArrowCategory"
+                        android:text="@string/all"
+                        android:textColor="@color/red" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgArrowCategory"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow"
+                        android:tint="@color/red" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/relHeadingCategory"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="4" />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgArrow"
-                    android:layout_width="@dimen/_10sdp"
-                    android:layout_height="@dimen/_10sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/right_arrow"
-                    android:tint="@color/red"/>
+                    android:id="@+id/imgBottomBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_125sdp"
+                    android:layout_below="@id/recyclerCategory" />
+
+                <RelativeLayout
+                    android:id="@+id/relHeadingOccassion"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_below="@id/imgBottomBanner"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingRight="@dimen/_10sdp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtHeadingOccassion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:textSize="@dimen/_13ssp"
+                        tools:text="@string/occassion_wear" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/txtViewAllOccassion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@id/imgArrowOccassion"
+                        android:layout_toLeftOf="@id/imgArrowOccassion"
+                        android:text="@string/all"
+                        android:textColor="@color/red" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imgArrowOccassion"
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/right_arrow"
+                        android:tint="@color/red" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerOccassion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/relHeadingOccassion"
+                    android:layout_marginBottom="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_minus4sdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/raw_product_item" />
 
             </RelativeLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerTrending"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relHeading"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/raw_product_item" />
+        </androidx.core.widget.NestedScrollView>
 
-            <RelativeLayout
-                android:id="@+id/relHeadingSale"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:paddingRight="@dimen/_10sdp"
-                android:visibility="gone"
-                tools:visibility="visible"
-                android:layout_below="@id/recyclerTrending">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/red"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="gone"
+            tools:targetApi="lollipop" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtHeadingSale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="center"
-                    android:textSize="@dimen/_14ssp"
-                    tools:text="@string/flash_sale" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtViewAllSale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/imgArrowSale"
-                    android:layout_toLeftOf="@id/imgArrowSale"
-                    android:textColor="@color/red"
-                    android:text="@string/all" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgArrowSale"
-                    android:layout_width="@dimen/_10sdp"
-                    android:layout_height="@dimen/_10sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/right_arrow"
-                    android:tint="@color/red" />
-
-            </RelativeLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerFlashSale"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relHeadingSale"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/raw_product_item" />
-
-            <RelativeLayout
-                android:id="@+id/relHeadingCategory"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:paddingRight="@dimen/_10sdp"
-                android:visibility="gone"
-                tools:visibility="visible"
-                android:layout_below="@id/recyclerFlashSale">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtHeadingCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="center"
-                    android:textSize="@dimen/_14ssp"
-                    tools:text="@string/flash_sale" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtViewAllCategory"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/imgArrowCategory"
-                    android:layout_toLeftOf="@id/imgArrowCategory"
-                    android:textColor="@color/red"
-                    android:text="@string/all" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgArrowCategory"
-                    android:layout_width="@dimen/_10sdp"
-                    android:layout_height="@dimen/_10sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/right_arrow"
-                    android:tint="@color/red" />
-
-            </RelativeLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relHeadingCategory"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="4"
-                android:layout_margin="@dimen/_10sdp"
-                tools:listitem="@layout/raw_product_item" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imgBottomBanner"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_125sdp"
-                android:layout_below="@id/recyclerCategory" />
-
-            <RelativeLayout
-                android:id="@+id/relHeadingOccassion"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:paddingRight="@dimen/_10sdp"
-                android:visibility="gone"
-                tools:visibility="visible"
-                android:layout_below="@id/imgBottomBanner">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtHeadingOccassion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="center"
-                    android:textSize="@dimen/_14ssp"
-                    tools:text="@string/occassion" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/txtViewAllOccassion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_toStartOf="@id/imgArrowOccassion"
-                    android:layout_toLeftOf="@id/imgArrowOccassion"
-                    android:textColor="@color/red"
-                    tools:text="@string/all" />
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgArrowOccassion"
-                    android:layout_width="@dimen/_10sdp"
-                    android:layout_height="@dimen/_10sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/right_arrow"
-                    android:tint="@color/red" />
-
-            </RelativeLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerOccassion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/relHeadingOccassion"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:spanCount="2"
-                tools:listitem="@layout/raw_product_item" />
-
-            <ProgressBar
-                android:id="@+id/progressBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:indeterminate="true"
-                android:indeterminateTint="@color/red"
-                android:indeterminateTintMode="src_atop"
-                android:visibility="visible"
-                tools:targetApi="lollipop" />
-
-        </RelativeLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
+    </RelativeLayout>
 
 </layout>

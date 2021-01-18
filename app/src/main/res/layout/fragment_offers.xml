@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,22 +15,38 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:src="@drawable/offer_promotion_banner"/>
 
-        <ImageView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/_150sdp"
-            android:scaleType="centerCrop"
+            app:cardElevation="0dp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:src="@drawable/offer_banner_one"/>
+            app:cardCornerRadius="@dimen/_5sdp">
 
-        <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:src="@drawable/offer_banner_one"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
+            app:cardElevation="0dp"
+            android:layout_margin="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_5sdp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-            android:src="@drawable/offer_banner_two"
-            android:layout_margin="@dimen/_10sdp"/>
+            android:src="@drawable/offer_banner_two"/>
 
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgCartItem"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_125sdp"
@@ -30,7 +30,7 @@
             android:layout_toEndOf="@id/imgCartItem"
             android:padding="@dimen/_10sdp">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,11 +43,12 @@
                 android:layout_toStartOf="@id/imgMoreoOptions" />
 
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgMoreoOptions"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:src="@drawable/ic_more"
+                android:background="?attr/selectableItemBackground"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true" />
 
@@ -64,22 +65,21 @@
                     android:layout_height="wrap_content"
                     android:text="@string/txtcolor"/>
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtColor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Orange"
-                    tools:text="Orange"
                     android:fontFamily="@font/montserrat_bold"/>
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txtsize"
                     android:paddingStart="@dimen/_10sdp"
                     android:paddingLeft="@dimen/_10sdp" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtSize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,13 +97,14 @@
                 android:layout_below="@id/llDetails">
 
 
-                <ImageView
-                    android:id="@+id/imgDelItem"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgRemoveItem"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
+                    android:background="?attr/selectableItemBackground"
                     android:src="@drawable/remove_item"/>
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/txtQty"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/_20sdp"
@@ -112,15 +113,16 @@
                     android:paddingEnd="@dimen/_10sdp"
                     android:text="1"/>
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgAddItem"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
+                    android:background="?attr/selectableItemBackground"
                     android:src="@drawable/add_item"/>
 
             </LinearLayout>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txtPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
@@ -132,7 +134,7 @@
                 android:layout_alignParentEnd="true"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="Rs 600"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_12ssp"
                 android:layout_alignParentRight="true" />
 
         </RelativeLayout>

@@ -34,13 +34,11 @@ public class LoginActivity extends AppCompatActivity implements ViewPresenter.Ma
 
     public void loginUser(View view) {
 
-        Utility.startActivity(LoginActivity.this, HomeActivity.class,true);
-
-        /*if (!validatedUser()) {
+        if (!validatedUser()) {
             return;
         }
 
-        signIn();*/
+        signIn();
 
     }
 

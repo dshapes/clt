@@ -1,7 +1,6 @@
 package com.techmate.woocommerce.fragment;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.bumptech.glide.Glide;
+import com.techmate.woocommerce.R;
 import com.techmate.woocommerce.adapter.BannerItemAdapter;
 import com.techmate.woocommerce.adapter.CategoryItemAdapter;
 import com.techmate.woocommerce.adapter.FlashSaleAdapter;
@@ -65,16 +66,13 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
         homeBinding.viewPager.setCycle(true);
         homeBinding.viewPager.setStopScrollWhenTouch(true);
 
-        gridSpacingItemDecoration = new GridSpacingItemDecoration(2,10,false);
+        gridSpacingItemDecoration = new GridSpacingItemDecoration(2, 10, false);
 
         homeBinding.recyclerTrending.addItemDecoration(gridSpacingItemDecoration);
         homeBinding.recyclerBanner.addItemDecoration(gridSpacingItemDecoration);
         homeBinding.recyclerFlashSale.addItemDecoration(gridSpacingItemDecoration);
         homeBinding.recyclerCategory.addItemDecoration(gridSpacingItemDecoration);
         homeBinding.recyclerOccassion.addItemDecoration(gridSpacingItemDecoration);
-
-        homeBinding.txtViewAll.setVisibility(View.GONE);
-        homeBinding.imgArrow.setVisibility(View.GONE);
 
         bannerList = new ArrayList<>();
         bannerItemAdapter = new BannerItemAdapter(context, bannerList);
@@ -106,29 +104,31 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
 
     @Override
     public void mainSuccess(HomeResponse responseModel, String whichResponse) {
+
         Data data = responseModel.getData();
 
         if (data != null) {
+
             if (data.getSlider() != null) {
                 homeBinding.viewPager.setAdapter(new SliderPagerAdapter(context, data.getSlider()));
             }
 
             if (data.getBanner() != null) {
-                homeBinding.txtHeading.setText("Now Or Never");
+                homeBinding.txtHeading.setText(getString(R.string.now_or_never));
                 bannerList.addAll(data.getBanner());
                 bannerItemAdapter.notifyDataSetChanged();
             }
 
             if (data.getTrendingProduct() != null) {
                 homeBinding.relHeading.setVisibility(View.VISIBLE);
-                homeBinding.txtHeadingTrending.setText("Trending");
+                homeBinding.txtHeadingTrending.setText(getString(R.string.trending));
                 productItemAdapter = new ProductItemAdapter(context, data.getTrendingProduct());
                 homeBinding.recyclerTrending.setAdapter(productItemAdapter);
             }
 
             if (data.getFlashSale() != null) {
                 homeBinding.relHeadingSale.setVisibility(View.VISIBLE);
-                homeBinding.txtHeadingSale.setText("Flash Sale");
+                homeBinding.txtHeadingSale.setText(getString(R.string.flash_sale));
                 flashSaleAdapter = new FlashSaleAdapter(context, data.getFlashSale());
                 homeBinding.recyclerFlashSale.setAdapter(flashSaleAdapter);
             }
@@ -137,18 +137,18 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
                 Glide.with(context).load(data.getBottomBanner()).into(homeBinding.imgBottomBanner);
             }
 
-            if (data.getCategoryList() != null){
+            if (data.getCategoryList() != null) {
                 homeBinding.relHeadingCategory.setVisibility(View.VISIBLE);
                 Constants.CATEGORIES = data.getCategoryList();
-                homeBinding.txtHeadingCategory.setText("Category");
-                homeBinding.recyclerCategory.setLayoutManager(new GridLayoutManager(context,5));
-                categoryItemAdapter = new CategoryItemAdapter(context, data.getCategoryList(),5);
+                homeBinding.txtHeadingCategory.setText(getString(R.string.category));
+                homeBinding.recyclerCategory.setLayoutManager(new GridLayoutManager(context, 5));
+                categoryItemAdapter = new CategoryItemAdapter(context, data.getCategoryList(), 5);
                 homeBinding.recyclerCategory.setAdapter(categoryItemAdapter);
             }
 
             if (data.getOccasionWear() != null) {
                 homeBinding.relHeadingOccassion.setVisibility(View.VISIBLE);
-                homeBinding.txtHeadingOccassion.setText("Occassion Wear");
+                homeBinding.txtHeadingOccassion.setText(getString(R.string.occassion_wear));
                 occassionWearAdapter = new OccassionWearAdapter(context, data.getOccasionWear());
                 homeBinding.recyclerOccassion.setAdapter(occassionWearAdapter);
             }

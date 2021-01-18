@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.ProfileActivity">
+
+        <RelativeLayout
+            android:id="@+id/relToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:background="@color/white"
+            android:elevation="@dimen/_5sdp"
+            android:orientation="horizontal"
+            tools:targetApi="lollipop">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:src="@drawable/back" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_toEndOf="@id/imgBack"
+                android:layout_toRightOf="@id/imgBack"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@string/my_profile"
+                android:textSize="@dimen/_18ssp"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/imgCart"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_cart" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_30sdp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/dummy_profile_image"/>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/badge"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/ic_edit"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/rounded_editext_border">
+
+                <ImageView
+                    android:id="@+id/imgUser"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_name" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/edtFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/imgUser"
+                    android:layout_toRightOf="@id/imgUser"
+                    android:background="@null"
+                    android:gravity="center|start"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Niharika Shah"
+                    android:textColor="@color/light_blue_1"
+                    android:drawableEnd="@drawable/edit"
+                    android:drawableRight="@drawable/edit"
+                    android:paddingRight="@dimen/_10sdp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/rounded_editext_border">
+
+                <ImageView
+                    android:id="@+id/imgUserDob"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_dob" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/edtDob"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/imgUserDob"
+                    android:layout_toRightOf="@id/imgUserDob"
+                    android:background="@null"
+                    android:gravity="start|center"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="12-12-2020"
+                    android:textColor="@color/light_blue_1"
+                    android:drawableEnd="@drawable/edit"
+                    android:drawableRight="@drawable/edit"
+                    android:paddingRight="@dimen/_10sdp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/rounded_editext_border">
+
+                <ImageView
+                    android:id="@+id/imgUserEmail"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_mail" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/edtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/imgUserEmail"
+                    android:layout_toRightOf="@id/imgUserEmail"
+                    android:background="@null"
+                    android:gravity="start|center"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="niha123@gmail.com"
+                    android:textColor="@color/light_blue_1"
+                    android:drawableEnd="@drawable/edit"
+                    android:drawableRight="@drawable/edit"
+                    android:paddingRight="@dimen/_10sdp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/rounded_editext_border">
+
+                <ImageView
+                    android:id="@+id/imgUserPhone"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_mobile" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/edtPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/imgUserPhone"
+                    android:layout_toRightOf="@id/imgUserPhone"
+                    android:background="@null"
+                    android:gravity="start|center"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="+91 234567890"
+                    android:textColor="@color/light_blue_1"
+                    android:drawableEnd="@drawable/edit"
+                    android:drawableRight="@drawable/edit"
+                    android:paddingRight="@dimen/_10sdp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/rounded_editext_border">
+
+                <ImageView
+                    android:id="@+id/imgUserPassword"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_password" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/edtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@id/imgUserPassword"
+                    android:layout_toRightOf="@id/imgUserPassword"
+                    android:background="@null"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="************"
+                    android:gravity="start|center"
+                    android:inputType="textPassword"
+                    android:textColor="@color/light_blue_1"
+                    android:drawableEnd="@drawable/edit"
+                    android:drawableRight="@drawable/edit"
+                    android:paddingRight="@dimen/_10sdp"
+                    tools:ignore="RtlSymmetry" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/rounded_editext_border"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/imgUserGender"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_gender" />
+
+                <RelativeLayout
+                    android:id="@+id/relRadioGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/imgUserGender"
+                    android:layout_toEndOf="@id/imgUserGender">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_female"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:drawableRight="@android:drawable/btn_radio"
+                            android:text="Female"
+                            android:textColor="@color/light_blue_1"
+                            android:drawableLeft="@drawable/ic_female"
+                            android:drawableEnd="@android:drawable/btn_radio" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:drawableLeft="@drawable/ic_female"
+                            android:gravity="center"
+                            android:button="@null"
+                            android:text="Male"
+                            android:drawableRight="@android:drawable/btn_radio"
+                            android:drawablePadding="@dimen/_10sdp"
+                            android:textColor="@color/light_blue_1"
+                            android:drawableStart="@drawable/ic_male"
+                            android:drawableEnd="@android:drawable/btn_radio" />
+
+                    </RadioGroup>
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:layout_width="@dimen/_36sdp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:padding="@dimen/_10sdp"
+                    android:src="@drawable/ic_edit"
+                    android:layout_toEndOf="@id/relRadioGender"
+                    android:layout_toRightOf="@id/relRadioGender" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/rounded_button"
+            android:layout_gravity="bottom"
+            android:textAllCaps="false"
+            android:text="@string/save"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+</layout>

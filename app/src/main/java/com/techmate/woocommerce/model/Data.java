@@ -3,7 +3,10 @@ package com.techmate.woocommerce.model;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class Data{
+public class Data {
+
+	@SerializedName("status")
+	private Integer status;
 
 	@SerializedName("trending-product")
 	private List<TrendingProductItem> trendingProduct;
@@ -53,4 +56,6 @@ public class Data{
 	public String getBottomBanner(){
 		return bottomBanner;
 	}
+
+	public Integer getStatus() { return status; }
 }

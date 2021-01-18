@@ -7,10 +7,12 @@ public class PrefManager {
 
     public static String KEY_USERID = "userid";
     public static String KEY_USER_NAME = "userName";
+    public static String KEY_FULL_NAME = "fullName";
+    public static String KEY_DOB = "dob";
+    public static String KEY_EMAIL = "email";
     public static String KEY_USER_TYPE = "userType";
     public static String KEY_RECEIVE_NOTIFICATION = "push_notification";
     public static final String FCM_REGISTER_ID = "fcm_register_id";
-
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 

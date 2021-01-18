@@ -1,5 +1,6 @@
 package com.techmate.woocommerce.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.techmate.woocommerce.R;
+import com.techmate.woocommerce.control.BottomSheetCallback;
+import com.techmate.woocommerce.control.BottomSheetFragment;
+import com.techmate.woocommerce.fragment.CategoriesFragment;
 import com.techmate.woocommerce.model.CategoryListItem;
+import com.techmate.woocommerce.ui.CategoryDetailActivity;
+import com.techmate.woocommerce.utils.Utility;
 
 import org.w3c.dom.Text;
 
@@ -25,9 +32,17 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
     private static final String TAG = "CategoryItemAdapter";
     private List<CategoryListItem> categoryListItemList;
     private Context context;
+    private CategoriesFragment categoriesFragment;
     private int size = 0;
 
     public CategoryItemAdapter(Context context, List<CategoryListItem> categoryListItemList, int size) {
+        this.context = context;
+        this.size = size;
+        this.categoryListItemList = categoryListItemList;
+    }
+
+    public CategoryItemAdapter(CategoriesFragment categoriesFragment, Context context,List<CategoryListItem> categoryListItemList, int size) {
+        this.categoriesFragment = categoriesFragment;
         this.context = context;
         this.size = size;
         this.categoryListItemList = categoryListItemList;
@@ -43,8 +58,20 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
     public void onBindViewHolder(@NonNull CategoryItemAdapter.ViewHolder holder, int position) {
 //        Glide.with(context).load("https://clothinaa.com/wp-content/uploads/2020/11/KR720KSL.jpg").centerInside().into(holder.civCategoryImage);
         Glide.with(context).load(categoryListItemList.get(position).getImage()).centerInside().into(holder.civCategoryImage);
+        holder.txtCategoryName.setSelected(true);
         holder.txtCategoryName.setText(categoryListItemList.get(position).getName());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (categoriesFragment == null) {
+                    return;
+                }
+
+                categoriesFragment.showBottomSheetDialog();
+            }
+        });
     }
 
     @Override

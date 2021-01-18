@@ -2,7 +2,10 @@ package com.techmate.woocommerce.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Build;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +24,7 @@ import com.techmate.woocommerce.fragment.HomeFragment;
 import com.techmate.woocommerce.model.TrendingProductItem;
 import com.techmate.woocommerce.ui.HomeActivity;
 import com.techmate.woocommerce.ui.ProductDetailActivity;
+import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.Utility;
 
 import java.util.ArrayList;
@@ -31,6 +35,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
     private static final String TAG = "ProductItemAdapter";
     private Context context;
     private List<TrendingProductItem> trendingProductItemList;
+    Paint paint = new Paint();
 
     public ProductItemAdapter(Context context, List<TrendingProductItem> trendingProductItems) {
         this.context = context;
@@ -44,7 +49,7 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductItemAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         if (trendingProductItemList.get(position) == null) {
             return;
@@ -64,16 +69,18 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
             holder.txtYourPrice.setText(productItem.getSalePrice());
         }
 
+        holder.txtOriginalPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         if (!TextUtils.isEmpty(productItem.getPrice())) {
             holder.txtOriginalPrice.setText(productItem.getPrice());
-            holder.txtOriginalPrice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         }
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Utility.startActivity((Activity) context, ProductDetailActivity.class);
+                Intent intent = new Intent((Activity) context, ProductDetailActivity.class);
+                intent.putExtra(Constants.INTENT_PRODUCT_ID,"10757");
+                context.startActivity(intent);
             }
         });
 
@@ -99,6 +106,11 @@ public class ProductItemAdapter extends RecyclerView.Adapter<ProductItemAdapter.
             txtProductName = itemView.findViewById(R.id.txtProductName);
             txtOriginalPrice = itemView.findViewById(R.id.txtOriginalPrice);
             txtYourPrice = itemView.findViewById(R.id.txtYourPrice);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                paint.setColor(context.getColor(R.color.dark_grey));
+                txtOriginalPrice.setLayerPaint(paint);
+            }
         }
     }
 

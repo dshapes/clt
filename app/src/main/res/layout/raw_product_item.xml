@@ -9,7 +9,8 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imgProduct"
@@ -74,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_margin="@dimen/_10sdp"
+            android:layout_margin="@dimen/_6sdp"
             android:background="@drawable/frame_circular"
             android:orientation="horizontal"
             android:padding="@dimen/_5sdp"
@@ -83,8 +84,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgDelete"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
+                android:layout_width="@dimen/_14sdp"
+                android:layout_height="@dimen/_14sdp"
                 android:layout_gravity="right"
                 android:src="@drawable/ic_delete"
                 app:civ_circle_background_color="@color/white" />
@@ -99,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
         android:ellipsize="marquee"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/montserrat_semibold"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:paddingLeft="@dimen/_5sdp"
@@ -130,7 +131,7 @@
             android:id="@+id/txtOriginalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
+            android:fontFamily="@font/montserrat_bold"
             android:paddingLeft="@dimen/_5sdp"
             android:singleLine="true"
             android:textColor="@color/meduim_grey"

@@ -91,27 +91,38 @@
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_250sdp"
-                    android:background="@color/black"
-                    tools:visibility="gone" />
+                    android:background="@color/black"/>
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_wishlist"
+                <LinearLayout
+                    android:id="@+id/llwishlist"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_below="@id/viewPager"
                     android:layout_alignParentEnd="true"
+                    android:background="@drawable/white_circle_bg"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="@dimen/_minus20sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:layout_marginRight="@dimen/_20sdp"
-                    android:src="@drawable/ic_favourit"
-                    android:tint="@color/red" />
+                    android:gravity="center">
+
+
+                <com.like.LikeButton
+                    android:id="@+id/img_wishlist"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    app:liked="true"
+                    android:padding="@dimen/_3sdp"
+                    app:like_drawable="@drawable/ic_heart_fill"
+                    app:unlike_drawable="@drawable/ic_heart"/>
+
+                </LinearLayout>
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
-                    android:layout_below="@id/img_wishlist"
+                    android:layout_below="@id/llwishlist"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_centerInParent="true"
                     app:tabBackground="@drawable/tab_selector"
@@ -216,8 +227,10 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llProductMaterials"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatImageView
@@ -254,6 +267,7 @@
                     android:weightSum="3">
 
                     <LinearLayout
+                        android:id="@+id/llSize"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -274,6 +288,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llColor"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -505,6 +520,7 @@
             tools:visibility="visible">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddtoCart"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -513,6 +529,7 @@
                 android:textAllCaps="false" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnBuyNow"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

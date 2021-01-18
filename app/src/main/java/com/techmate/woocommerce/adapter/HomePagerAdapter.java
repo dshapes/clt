@@ -30,7 +30,7 @@ public class HomePagerAdapter extends FragmentStateAdapter {
         } else if (position == 2) {
             return OffersFragment.getInstance();
         } else if (position == 3) {
-            return WishListsFragment.getInstance();
+            return WishListsFragment.getInstance(WishListsFragment.class.getSimpleName());
         } else {
             return AccountFragment.getInstance();
         }

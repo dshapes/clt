@@ -29,7 +29,7 @@ public class MainModel implements ViewPresenter.MainPresenter {
             dataManager.getData(path, hashMap, new ConfirmationCallback() {
                 @Override
                 public void onSuccess(HomeResponse main) {
-                    mainView.mainSuccess(main, "");
+                    mainView.mainSuccess(main, path);
                     mainView.hideProgressBar();
                 }
 
@@ -40,7 +40,7 @@ public class MainModel implements ViewPresenter.MainPresenter {
                 }
             });
         } else {
-            mainView.mainValidateError("");
+            mainView.mainValidateError(path);
             mainView.hideProgressBar();
         }
     }
@@ -52,7 +52,7 @@ public class MainModel implements ViewPresenter.MainPresenter {
             dataManager.getDataByGet(path, new ConfirmationCallback() {
                 @Override
                 public void onSuccess(HomeResponse main) {
-                    mainView.mainSuccess(main, "");
+                    mainView.mainSuccess(main, path);
                     mainView.hideProgressBar();
                 }
 
@@ -63,7 +63,7 @@ public class MainModel implements ViewPresenter.MainPresenter {
                 }
             });
         } else {
-            mainView.mainValidateError("");
+            mainView.mainValidateError(path);
             mainView.hideProgressBar();
         }
     }
@@ -76,7 +76,7 @@ public class MainModel implements ViewPresenter.MainPresenter {
             dataManager.getLandingPageData(path, new ConfirmationCallback() {
                 @Override
                 public void onSuccess(HomeResponse main) {
-                    mainView.mainSuccess(main, "");
+                    mainView.mainSuccess(main, path);
                     mainView.hideProgressBar();
                 }
 
@@ -87,7 +87,7 @@ public class MainModel implements ViewPresenter.MainPresenter {
                 }
             });
         } else {
-            mainView.mainValidateError("");
+            mainView.mainValidateError(path);
             mainView.hideProgressBar();
         }
 

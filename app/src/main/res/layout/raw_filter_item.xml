@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Below 500(7)"
+        android:textColor="@color/light_blue_1"
+        android:buttonTint="@color/light_blue_1"
+        android:padding="@dimen/_10sdp"/>
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="500-1000(50)"
+        android:textColor="@color/light_blue_1"
+        android:buttonTint="@color/light_blue_1"
+        android:padding="@dimen/_10sdp"/>
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1000-2000(121)"
+        android:textColor="@color/light_blue_1"
+        android:buttonTint="@color/light_blue_1"
+        android:padding="@dimen/_10sdp"/>
+
+    <com.google.android.material.radiobutton.MaterialRadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="2000-3000(121)"
+        android:textColor="@color/light_blue_1"
+        android:buttonTint="@color/light_blue_1"
+        android:padding="@dimen/_10sdp"/>
+
+</LinearLayout>

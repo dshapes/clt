@@ -1,5 +1,6 @@
 package com.techmate.woocommerce.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -18,19 +19,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.techmate.woocommerce.R;
 import com.techmate.woocommerce.adapter.CategoryItemAdapter;
 
+import com.techmate.woocommerce.control.BottomSheetCallback;
+import com.techmate.woocommerce.control.BottomSheetFragment;
+import com.techmate.woocommerce.control.GridSpacingItemDecoration;
+
 import com.techmate.woocommerce.databinding.FragmentCategoriesBinding;
 import com.techmate.woocommerce.listener.CategoryListener;
 import com.techmate.woocommerce.model.CategoryListItem;
 import com.techmate.woocommerce.model.HomeResponse;
 import com.techmate.woocommerce.mvp.MainModel;
 import com.techmate.woocommerce.mvp.ViewPresenter;
+import com.techmate.woocommerce.ui.CategoryDetailActivity;
 import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoriesFragment extends Fragment implements ViewPresenter.MainView {
+public class CategoriesFragment extends Fragment implements ViewPresenter.MainView, BottomSheetCallback {
 
     private static final String TAG = "CategoriesFragment";
     private Context context;
@@ -38,6 +44,8 @@ public class CategoriesFragment extends Fragment implements ViewPresenter.MainVi
     private FragmentCategoriesBinding categoriesBinding;
     private CategoryItemAdapter categoryItemAdapter;
     private List<CategoryListItem> categoryListItemList;
+    private GridSpacingItemDecoration gridSpacingItemDecoration;
+    private CategoriesFragment categoriesFragment;
 
     public static CategoriesFragment getInstance() {
         return new CategoriesFragment();
@@ -47,16 +55,13 @@ public class CategoriesFragment extends Fragment implements ViewPresenter.MainVi
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         context = getActivity();
+        categoriesFragment = this;
         categoryListItemList = new ArrayList<>();
         categoriesBinding = FragmentCategoriesBinding.inflate(inflater, container, false);
-        categoriesBinding.recyclerCategories.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-                outRect.set(10, 20, 10, 20);
-            }
-        });
         categoriesBinding.recyclerCategories.setLayoutManager(new GridLayoutManager(context, 4));
-        categoryItemAdapter = new CategoryItemAdapter(context, categoryListItemList,categoryListItemList.size());
+        gridSpacingItemDecoration = new GridSpacingItemDecoration(4,10,false);
+        categoriesBinding.recyclerCategories.addItemDecoration(gridSpacingItemDecoration);
+        categoryItemAdapter = new CategoryItemAdapter(categoriesFragment,context, categoryListItemList,categoryListItemList.size());
         categoriesBinding.recyclerCategories.setAdapter(categoryItemAdapter);
         mainModel = new MainModel(this, context);
         mainModel.getDataByGet(Constants.API_GET_CATEGORIES);
@@ -86,6 +91,9 @@ public class CategoriesFragment extends Fragment implements ViewPresenter.MainVi
 
     @Override
     public void mainSuccess(HomeResponse responseModel, String whichResponse) {
+        if (!whichResponse.equals(Constants.API_GET_CATEGORIES)){
+            return;
+        }
         Utility.printGson(TAG, responseModel);
     }
 
@@ -102,5 +110,19 @@ public class CategoriesFragment extends Fragment implements ViewPresenter.MainVi
             categoryItemAdapter.notifyDataSetChanged();
         }
         super.onResume();
+    }
+
+    public void showBottomSheetDialog(){
+
+        BottomSheetFragment bottomSheetFragment = new BottomSheetFragment(R.layout.bottom_sheet_dialog_category, 5, this);
+        if (getFragmentManager() != null) {
+            bottomSheetFragment.show(getChildFragmentManager(),bottomSheetFragment.getTag());
+        }
+
+    }
+
+    @Override
+    public void onSelected(int position) {
+        Utility.startActivity((Activity) context, CategoryDetailActivity.class);
     }
 }

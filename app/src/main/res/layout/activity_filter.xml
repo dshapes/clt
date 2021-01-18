@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.FilterActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:id="@+id/llFilterCustomActionBar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/txtTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.9"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center_vertical"
+                    android:paddingStart="20dp"
+                    android:paddingLeft="20dp"
+                    android:text="@string/filter_by"
+                    android:textSize="@dimen/_18ssp"
+                    android:visibility="visible" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgClose"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_close"
+                    android:padding="@dimen/_10sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.1"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/relFilter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/llClearFilter"
+                android:layout_below="@id/llFilterCustomActionBar">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerFilter"
+                        android:layout_width="130dp"
+                        android:layout_height="match_parent"
+                        android:background="#F5F5F5" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Below 500(7)"
+                                android:checked="true"
+                                android:textColor="@color/light_blue_1"
+                                android:buttonTint="@color/red"
+                                android:padding="@dimen/_10sdp"/>
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="500-1000(50)"
+                                android:textColor="@color/light_blue_1"
+                                android:buttonTint="@color/light_blue_1"
+                                android:padding="@dimen/_10sdp"/>
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1000-2000(121)"
+                                android:textColor="@color/light_blue_1"
+                                android:buttonTint="@color/light_blue_1"
+                                android:padding="@dimen/_10sdp"/>
+
+                            <com.google.android.material.radiobutton.MaterialRadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="2000-3000(121)"
+                                android:textColor="@color/light_blue_1"
+                                android:buttonTint="@color/light_blue_1"
+                                android:padding="@dimen/_10sdp"/>
+
+
+                        <ListView
+                            android:id="@+id/listViewPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:scrollbars="none"
+                            android:visibility="gone"/>
+
+                        <ListView
+                            android:id="@+id/lst_size"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:scrollbars="none"
+                            android:visibility="gone" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvFilterGrade"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:scrollbars="none"
+                            android:visibility="gone"/>
+
+                        <RadioGroup
+                            android:id="@+id/radioGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <RadioButton
+                                android:id="@+id/radio_box"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:paddingStart="10dp"
+                                android:paddingLeft="10dp"
+                                android:text="Boxes"
+                                android:textSize="12sp" />
+
+                            <RadioButton
+                                android:id="@+id/radio_area"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingStart="10dp"
+                                android:paddingLeft="10dp"
+                                android:text="Area"
+                                android:textSize="12sp" />
+                        </RadioGroup>
+
+                        <SeekBar
+                            android:id="@+id/seekbar_price"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:max="100000"
+                            android:min="1"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/txt_box"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="20dp"
+                            android:text="No Of Boxes : 1/5000 "
+                            android:visibility="gone" />
+
+                        <SeekBar
+                            android:id="@+id/seekbar_box"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:max="50000"
+                            android:min="1"
+                            android:visibility="gone" />
+
+                        <Spinner
+                            android:id="@+id/spinner_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="30dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="30dp"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/txt_max"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="20dp"
+                            android:text="Square Meters : 1/5000"
+                            android:visibility="gone" />
+
+                        <SeekBar
+                            android:id="@+id/seekbar_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:max="50000"
+                            android:min="1"
+                            android:visibility="gone" />
+
+                        <ListView
+                            android:id="@+id/lst_posted_by"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:scrollbars="none"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_sale_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lst_sale"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:scrollbars="none"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_price_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lst_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp"
+                                android:scrollbars="none"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_features"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lst_features"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:scrollbars="none"
+                                android:visibility="gone" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_following"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical"
+                            android:visibility="gone">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/lst_following"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:scrollbars="none"
+                                android:visibility="visible" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_verifieduser"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dp"
+                            android:visibility="gone">
+
+                            <RadioGroup
+                                android:id="@+id/rgVerifiedUser"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="visible">
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/radioVerified"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
+                                    android:paddingLeft="4dp"
+                                    android:paddingEnd="0dp"
+                                    android:paddingRight="0dp"
+                                    android:text="Verified" />
+
+                                <androidx.appcompat.widget.AppCompatRadioButton
+                                    android:id="@+id/radioUnverified"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="40dp"
+                                    android:gravity="center_vertical"
+                                    android:paddingStart="4dp"
+                                    android:paddingLeft="4dp"
+                                    android:paddingEnd="0dp"
+                                    android:paddingRight="0dp"
+                                    android:text="Unverified" />
+
+                            </RadioGroup>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/llClearFilter"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_above="@id/llFilterButtonsContainer"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:text="Clear"
+                    android:textAllCaps="false"
+                    android:textColor="@color/maroon"
+                    android:textSize="@dimen/_12ssp"
+                    app:icon="@drawable/ic_clear"
+                    app:iconGravity="end"
+                    app:iconSize="@dimen/_15sdp"
+                    app:iconTint="@color/maroon" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llFilterButtonsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_alignParentBottom="true">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/btnFilterCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="@string/cancel"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/btnApplyFilter"
+                    style="@style/TextAppearance.MaterialComponents.Button"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:text="@string/apply_filter"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</layout>
