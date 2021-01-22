@@ -111,4 +111,5 @@
     <string name="occassion_wear">Occasion Wear</string>
     <string name="promo">Promo</string>
     <string name="apply">Apply</string>
+    <string name="something_went_wrong">Something went wrong. Please try again later.</string>
 </resources>

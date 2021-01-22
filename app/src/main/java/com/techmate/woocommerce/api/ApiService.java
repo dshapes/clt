@@ -17,6 +17,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -29,6 +30,10 @@ public interface ApiService {
     Observable<HomeResponse> getData(@Path(value="path", encoded = true) String path, @FieldMap() Map<String, String> formData);
 
     @GET("{path}")
+    Observable<HomeResponse> getDataByGetMethod(@Path(value="path", encoded = true) String path, @Query("consumer_key") String ckey, @Query("consumer_secret") String csecret);
+
+    @GET("{path}")
     Observable<HomeResponse> getDataByGetMethod(@Path(value="path", encoded = true) String path);
+
 
 }

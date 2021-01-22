@@ -21,7 +21,7 @@
                 <com.techmate.woocommerce.control.AutoScrollViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_150sdp" />
+                    android:layout_height="@dimen/_200sdp" />
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tab_layout"
@@ -217,7 +217,7 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgBottomBanner"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_125sdp"
+                    android:layout_height="@dimen/_180sdp"
                     android:layout_below="@id/recyclerCategory" />
 
                 <RelativeLayout

@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -73,7 +74,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         }
 
         mainModel = new MainModel(this, context);
-        //mainModel.getDataByGet(Constants.API_PRODUCTS + "/" + productId);
+        mainModel.getDataByGet(Constants.API_PRODUCTS + "/" + productId);
 
         for (int i = 0; i < 2; i++) {
             TrendingProductItem trendingProductItem = new TrendingProductItem();
@@ -164,5 +165,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     @Override
     public void mainError(String err) {
         Utility.printLog(TAG, "err is " + err);
+        Toast.makeText(ProductDetailActivity.this, err,Toast.LENGTH_SHORT).show();
     }
 }

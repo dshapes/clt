@@ -42,4 +42,9 @@ public class SliderPagerAdapter extends PagerAdapter {
         ((ViewPager) container).addView(imageView, 0);
         return imageView;
     }
+
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        ((ViewPager) container).removeView((View) object);
+    }
 }

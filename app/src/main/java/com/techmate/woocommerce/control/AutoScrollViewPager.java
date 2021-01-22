@@ -15,10 +15,10 @@ import java.lang.reflect.Field;
 
 public class AutoScrollViewPager extends ViewPager {
 
-    public static final int        DEFAULT_INTERVAL            = 1500;
+    public static final int DEFAULT_INTERVAL = 1500;
 
-    public static final int        LEFT                        = 0;
-    public static final int        RIGHT                       = 1;
+    public static final int LEFT = 0;
+    public static final int RIGHT = 1;
 
     /** do nothing when sliding at the last or first item **/
     public static final int        SLIDE_BORDER_MODE_NONE      = 0;
@@ -50,7 +50,7 @@ public class AutoScrollViewPager extends ViewPager {
     private float                  touchX                      = 0f, downX = 0f;
     private CustomDurationScroller scroller                    = null;
 
-    public static final int        SCROLL_WHAT                 = 0;
+    public static final int SCROLL_WHAT = 0;
 
     public AutoScrollViewPager(Context paramContext) {
         super(paramContext);
@@ -122,7 +122,6 @@ public class AutoScrollViewPager extends ViewPager {
             scrollerField.setAccessible(true);
             Field interpolatorField = ViewPager.class.getDeclaredField("sInterpolator");
             interpolatorField.setAccessible(true);
-
             scroller = new CustomDurationScroller(getContext(), (Interpolator)interpolatorField.get(null));
             scrollerField.set(this, scroller);
         } catch (Exception e) {
@@ -141,7 +140,7 @@ public class AutoScrollViewPager extends ViewPager {
             return;
         }
 
-        int nextItem = (direction == LEFT) ? --currentItem : ++currentItem;
+        int nextItem = (direction == LEFT) ? -- currentItem : ++currentItem;
         if (nextItem < 0) {
             if (isCycle) {
                 setCurrentItem(totalCount - 1, isBorderAnimation);
@@ -218,17 +217,14 @@ public class AutoScrollViewPager extends ViewPager {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
 
-            switch (msg.what) {
-                case SCROLL_WHAT:
-                    AutoScrollViewPager pager = this.autoScrollViewPager.get();
-                    if (pager != null) {
-                        pager.scroller.setScrollDurationFactor(pager.autoScrollFactor);
-                        pager.scrollOnce();
-                        pager.scroller.setScrollDurationFactor(pager.swipeScrollFactor);
-                        pager.sendScrollMessage(pager.interval + pager.scroller.getDuration());
-                    }
-                default:
-                    break;
+            if (msg.what == SCROLL_WHAT) {
+                AutoScrollViewPager pager = this.autoScrollViewPager.get();
+                if (pager != null) {
+                    pager.scroller.setScrollDurationFactor(pager.autoScrollFactor);
+                    pager.scrollOnce();
+                    pager.scroller.setScrollDurationFactor(pager.swipeScrollFactor);
+                    pager.sendScrollMessage(pager.interval + pager.scroller.getDuration());
+                }
             }
         }
     }

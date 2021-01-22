@@ -7,6 +7,7 @@ import com.techmate.woocommerce.model.Data;
 import com.techmate.woocommerce.model.HomeResponse;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MainModel implements ViewPresenter.MainPresenter {

@@ -36,7 +36,7 @@ public class DataManager {
         return mDataManager;
     }
 
-    public void getData(String path, Map<String, String> hashMap, final ConfirmationCallback confirmationCallback){
+    public void getData(String path, Map<String, String> hashMap, final ConfirmationCallback confirmationCallback) {
 
         apiService = ApiClient.getPOSTClient(false);
 
@@ -66,12 +66,12 @@ public class DataManager {
 
     }
 
-    public void getDataByGet(String path, final ConfirmationCallback confirmationCallback){
+    public void getDataByGet(String path, final ConfirmationCallback confirmationCallback) {
 
         apiService = ApiClient.getPOSTClient(true);
 
         this.confirmationCallback = confirmationCallback;
-        Observable<HomeResponse> mainObservable = apiService.getDataByGetMethod(path);
+        Observable<HomeResponse> mainObservable = apiService.getDataByGetMethod(path, Constants.CONSUMER_KEY, Constants.CONSUMER_SECRET);
         if (mainObservable != null) {
             mainObservable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -96,7 +96,7 @@ public class DataManager {
 
     }
 
-    public void getLandingPageData(String path, final ConfirmationCallback confirmationCallback){
+    public void getLandingPageData(String path, final ConfirmationCallback confirmationCallback) {
 
         apiService = ApiClient.getPOSTWPClient();
 

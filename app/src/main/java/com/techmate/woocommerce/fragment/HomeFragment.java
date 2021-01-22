@@ -159,4 +159,5 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
     public void mainError(String err) {
         Utility.printLog(TAG, "err -- >> " + err);
     }
+
 }
