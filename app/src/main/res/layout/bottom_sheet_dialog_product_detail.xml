@@ -44,9 +44,7 @@
                 android:id="@+id/txtContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_12ssp"
-
-                android:text="Orange and golden printed empire A-line kurti, has a tie-up neck, short sleeves, flared hem" />
+                android:textSize="@dimen/_12ssp"/>
 
         </LinearLayout>
 

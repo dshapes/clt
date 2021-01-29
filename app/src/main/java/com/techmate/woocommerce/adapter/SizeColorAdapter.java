@@ -3,6 +3,7 @@ package com.techmate.woocommerce.adapter;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,21 +13,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.techmate.woocommerce.R;
+import com.techmate.woocommerce.utils.Constants;
 
 import java.util.List;
+
+import me.gilo.woodroid.models.Option;
 
 
 public class SizeColorAdapter extends RecyclerView.Adapter<SizeColorAdapter.ViewHolder> {
 
     private static final String TAG = "SizeColorAdapter";
     private Context context;
-    private List<String> list;
-    private int type;
+    private List<String> optionList;
+    private Constants.BOTTOM_SHEET_VIEW_TYPE view_type;
 
-    public SizeColorAdapter(Context context, List<String> list, int type) {
+
+    public SizeColorAdapter(Context context, List<String> optionList, Constants.BOTTOM_SHEET_VIEW_TYPE viewType) {
         this.context = context;
-        this.list = list;
-        this.type = type;
+        this.optionList = optionList;
+        this.view_type = viewType;
     }
 
     @NonNull
@@ -38,9 +43,9 @@ public class SizeColorAdapter extends RecyclerView.Adapter<SizeColorAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        if (type == 1){
+        if (view_type == Constants.BOTTOM_SHEET_VIEW_TYPE.SIZE){
 
-            holder.btnSizeColor.setText(list.get(position));
+            holder.btnSizeColor.setText(optionList.get(position));
 
             holder.btnSizeColor.setOnClickListener(view -> {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -49,46 +54,23 @@ public class SizeColorAdapter extends RecyclerView.Adapter<SizeColorAdapter.View
                 }
             });
         }
-        else if (type == 2){
+        else if (view_type == Constants.BOTTOM_SHEET_VIEW_TYPE.COLOR){
 
-            switch (position){
+            switch (optionList.get(position)){
 
-                case 0:
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        holder.btnSizeColor.setBackgroundColor(context.getColor(R.color.red));
-                    }
-                    break;
-                case 1:
+                case "Black":
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         holder.btnSizeColor.setBackgroundColor(context.getColor(R.color.black));
-                    }
-                    break;
-                case 2:
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        holder.btnSizeColor.setBackgroundColor(context.getColor(R.color.dark_grey));
-                    }
-                    break;
-                case 3:
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        holder.btnSizeColor.setBackgroundColor(context.getColor(R.color.purple_700));
                     }
                     break;
             }
 
         }
-
-
     }
 
     @Override
     public int getItemCount() {
-        switch (type){
-            case 1:
-                return 5;
-            case 2:
-                return 4;
-        }
-        return 0;
+        return optionList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -8,6 +8,7 @@ import java.util.List;
 public class Constants {
 
     public static final String APP_NAME = "WooCommerce";
+    public static final String BASE_URL = "https://clothinaa.com";
     public static final String API_BASE_URL = "https://www.clothinaa.com/wp-json/wp/v3/";
     public static final String API_GET_BASE_URL = "https://www.clothinaa.com/wp-json/wc/v3/";
     public static final String API_GET_WP_BASE_URL = "https://clothinaa.com/wp-json/wp/v3/";
@@ -27,9 +28,6 @@ public class Constants {
     public static final String API_PRODUCTS = "products";
     public static final String API_ATTRIBUTES = "products/attributes";
     public static final String API_COUPONS = "coupons";
-
-
-    public static List<CategoryListItem> CATEGORIES = new ArrayList<>();
     public static  int SIZE_VIEW_TYPE = 0;
     public static  int COLOR_VIEW_TYPE = 1;
 
@@ -37,9 +35,12 @@ public class Constants {
     public static final String PARAM_EMAIL = "email";
     public static final String PARAM_PASSWORD = "password";
     public static final String PARAM_DOB = "dob";
+    public static final String INTENT_SUB_CATEGORY_ID = "subCategoryId";
 
     public static final String INTENT_MODE = "mode";
     public static final String INTENT_PRODUCT_ID = "product_id";
+    public static final String INTENT_CATEGORY_ID = "category_id";
+    public static final String INTENT_CATEGORY_NAME = "category_name";
     public static final String MODE_ADD = "add";
     public static final String MODE_EDIT = "edit";
 

@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.google.gson.Gson;
 import com.techmate.woocommerce.R;
 import com.techmate.woocommerce.adapter.CategoryItemAdapter;
 import com.techmate.woocommerce.control.GridSpacingItemDecoration;
@@ -24,8 +25,9 @@ import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.Utility;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class OffersFragment extends Fragment implements ViewPresenter.MainView {
+public class OffersFragment extends Fragment implements ViewPresenter.OffersView {
 
     private static final String TAG = "OffersFragment";
     private FragmentOffersBinding binding;
@@ -42,7 +44,7 @@ public class OffersFragment extends Fragment implements ViewPresenter.MainView {
         context = getActivity();
         binding = FragmentOffersBinding.inflate(getLayoutInflater());
         mainModel = new MainModel(this, context);
-        mainModel.getDataByGet(Constants.API_COUPONS);
+        //mainModel.getOffers(Constants.API_COUPONS);
         return binding.getRoot();
     }
 
@@ -67,11 +69,13 @@ public class OffersFragment extends Fragment implements ViewPresenter.MainView {
     }
 
     @Override
-    public void mainSuccess(HomeResponse responseModel, String whichResponse) {
+    public void mainSuccess(List<HomeResponse> homeResponseList, String whichResponse) {
+
         if (!whichResponse.equals(Constants.API_COUPONS)){
             return;
         }
-        Utility.printGson(TAG, responseModel);
+        Utility.printLog(TAG, "" + homeResponseList.size());
+
     }
 
     @Override
@@ -79,4 +83,5 @@ public class OffersFragment extends Fragment implements ViewPresenter.MainView {
         Utility.printLog(TAG, "err -- >> " + err);
         Toast.makeText(getActivity(), err,Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -1,8 +1,11 @@
 package com.techmate.woocommerce.api;
 
+import com.techmate.woocommerce.model.CategoryListItem;
 import com.techmate.woocommerce.model.HomeResponse;
+import com.techmate.woocommerce.model.ProductDetailResponse;
 import com.techmate.woocommerce.utils.Constants;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -35,5 +38,16 @@ public interface ApiService {
     @GET("{path}")
     Observable<HomeResponse> getDataByGetMethod(@Path(value="path", encoded = true) String path);
 
+    @GET("{path}")
+    Observable<List<CategoryListItem>> getCategoryList(@Path(value="path", encoded = true) String path, @Query("consumer_key") String ckey, @Query("consumer_secret") String csecret);
+
+    @GET("{path}")
+    Observable<List<CategoryListItem>> getCategoryListByParent(@Path(value="path", encoded = true) String path, @Query("parent") String parentId, @Query("consumer_key") String ckey, @Query("consumer_secret") String csecret);
+
+    @GET("{path}")
+    Observable<ProductDetailResponse> getProductDetails(@Path(value="path", encoded = true) String path, @Query("consumer_key") String ckey, @Query("consumer_secret") String csecret);
+
+    @GET("{path}")
+    Observable<List<HomeResponse>> getOffers(@Path(value="path", encoded = true) String path, @Query("consumer_key") String ckey, @Query("consumer_secret") String csecret);
 
 }

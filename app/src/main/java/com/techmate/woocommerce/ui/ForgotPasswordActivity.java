@@ -17,6 +17,7 @@ import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.Utility;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements ViewPresenter.MainView {
 
@@ -77,4 +78,5 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ViewPre
     public void mainError(String err) {
         Utility.printLog(TAG, "err " + err);
     }
+
 }

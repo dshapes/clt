@@ -2,12 +2,17 @@ package com.techmate.woocommerce.api;
 
 import android.content.Context;
 
+import com.techmate.woocommerce.model.CategoryListItem;
 import com.techmate.woocommerce.model.HomeResponse;
+import com.techmate.woocommerce.model.ProductDetailResponse;
+import com.techmate.woocommerce.mvp.CategoryListingCallback;
 import com.techmate.woocommerce.mvp.ConfirmationCallback;
+import com.techmate.woocommerce.mvp.OffersCallback;
+import com.techmate.woocommerce.mvp.ProductDetailCallback;
 import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.PrefManager;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -23,6 +28,9 @@ public class DataManager {
     private PrefManager prefManager;
     private static DataManager mDataManager;
     private ConfirmationCallback confirmationCallback;
+    private CategoryListingCallback categoryListingCallback;
+    private ProductDetailCallback productDetailCallback;
+    private OffersCallback offersCallback;
 
     public DataManager(Context mContext) {
         this.context = mContext;
@@ -126,5 +134,67 @@ public class DataManager {
 
     }
 
+    public void getListingData(String path, String ckey, String csecret, final CategoryListingCallback categoryListingCallback) {
 
+        apiService = ApiClient.getListingClient();
+
+        this.categoryListingCallback = categoryListingCallback;
+        Observable<List<CategoryListItem>> mainObservable = apiService.getCategoryList(path,ckey,csecret);
+        if (mainObservable !=    null) {
+            mainObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(result -> result)
+                    .subscribe(main -> {
+                        if (main != null) {
+                            categoryListingCallback.onSuccess(main);
+                        } else {
+                            categoryListingCallback.onError("Error");
+                        }
+                    }, throwable -> categoryListingCallback.onError("" + throwable.getMessage()));
+        }
+
+
+    }
+
+    public void getProductDetail(String path, String ckey, String csecret, final ProductDetailCallback productDetailCallback) {
+
+        apiService = ApiClient.getProductDetailClient();
+
+        this.productDetailCallback = productDetailCallback;
+        Observable<ProductDetailResponse> mainObservable = apiService.getProductDetails(path,ckey,csecret);
+        if (mainObservable != null) {
+            mainObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(result -> result)
+                    .subscribe(main -> {
+                        if (main != null) {
+                            productDetailCallback.onSuccess(main);
+                        } else {
+                            productDetailCallback.onError("Error");
+                        }
+                    }, throwable -> productDetailCallback.onError("" + throwable.getMessage()));
+        }
+
+
+    }
+
+    public void getOffers(String path, String ckey, String csecret, final OffersCallback offersCallback) {
+
+        apiService = ApiClient.getProductDetailClient();
+
+        this.offersCallback = offersCallback;
+        Observable<List<HomeResponse>> mainObservable = apiService.getOffers(path,ckey,csecret);
+        if (mainObservable != null) {
+            mainObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(result -> result)
+                    .subscribe(main -> {
+                        if (main != null) {
+                            offersCallback.onSuccess(main);
+                        } else {
+                            offersCallback.onError("Error");
+                        }
+                    }, throwable -> offersCallback.onError("" + throwable.getMessage()));
+        }
+    }
 }

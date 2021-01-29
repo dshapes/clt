@@ -8,145 +8,20 @@
     android:padding="@dimen/_10sdp">
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
-        android:text="Kurtis"
+        android:text=""
         android:textColor="@color/maroon"
         android:textSize="@dimen/_14ssp" />
 
-    <LinearLayout
-        android:id="@+id/llMain"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginLeft="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:alpha="0.5"
-            android:background="@color/lightest_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="Line Kurtis"
-            android:textColor="@color/red"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:alpha="0.5"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/lightest_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="Straight Kurtis"
-            android:textColor="@color/light_blue_1"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:alpha="0.5"
-            android:background="@color/lightest_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="Round Kurtis"
-            android:textColor="@color/light_blue_1"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:alpha="0.5"
-            android:background="@color/lightest_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="Short Kurtis"
-            android:textColor="@color/light_blue_1"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:alpha="0.5"
-            android:background="@color/lightest_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Long Kurtis"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:textColor="@color/light_blue_1"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:alpha="0.5"
-            android:background="@color/lightest_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="Plain Straight Kurtis"
-            android:textColor="@color/light_blue_1"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:alpha="0.5"
-            android:background="@color/lightest_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="Plain Round Kurtis"
-            android:textColor="@color/light_blue_1"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:alpha="0.5"
-            android:background="@color/lightest_blue" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:text="Tunic"
-            android:textColor="@color/light_blue_1"/>
-
-
-
-    </LinearLayout>
+        android:layout_marginTop="@dimen/_10sdp"/>
 
 
 </LinearLayout>

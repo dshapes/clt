@@ -122,7 +122,7 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
             if (data.getTrendingProduct() != null) {
                 homeBinding.relHeading.setVisibility(View.VISIBLE);
                 homeBinding.txtHeadingTrending.setText(getString(R.string.trending));
-                productItemAdapter = new ProductItemAdapter(context, data.getTrendingProduct());
+                productItemAdapter = new ProductItemAdapter(context, data.getTrendingProduct(),false);
                 homeBinding.recyclerTrending.setAdapter(productItemAdapter);
             }
 
@@ -139,10 +139,9 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
 
             if (data.getCategoryList() != null) {
                 homeBinding.relHeadingCategory.setVisibility(View.VISIBLE);
-                Constants.CATEGORIES = data.getCategoryList();
                 homeBinding.txtHeadingCategory.setText(getString(R.string.category));
                 homeBinding.recyclerCategory.setLayoutManager(new GridLayoutManager(context, 5));
-                categoryItemAdapter = new CategoryItemAdapter(context, data.getCategoryList(), 5);
+                categoryItemAdapter = new CategoryItemAdapter(context, data.getCategoryList());
                 homeBinding.recyclerCategory.setAdapter(categoryItemAdapter);
             }
 

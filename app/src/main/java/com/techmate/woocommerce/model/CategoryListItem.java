@@ -1,49 +1,99 @@
 package com.techmate.woocommerce.model;
 
 import java.util.List;
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class CategoryListItem{
+public class CategoryListItem {
 
-	@SerializedName("image")
-	private String image;
+    @SerializedName("image")
+    private String image;
 
-	@SerializedName("sub-category")
-	private List<SubCategoryItem> subCategory;
+    @SerializedName("sub-category")
+    private List<SubCategoryItem> subCategory;
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("name")
+    private String name;
 
-	@SerializedName("count")
-	private int count;
+    @SerializedName("count")
+    private int count;
 
-	@SerializedName("id")
-	private int id;
+    @SerializedName("id")
+    private int id;
 
-	@SerializedName("slug")
-	private String slug;
+    @SerializedName("slug")
+    private String slug;
 
-	public String getImage(){
-		return image;
-	}
+    // Categories
 
-	public List<SubCategoryItem> getSubCategory(){
-		return subCategory;
-	}
+    @SerializedName("parent")
+    @Expose
+    private Integer parent;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("display")
+    @Expose
+    private String display;
+    @SerializedName("menu_order")
+    @Expose
+    private Integer menuOrder;
+    @SerializedName("yoast_head")
+    @Expose
+    private String yoastHead;
+    @SerializedName("_links")
+    @Expose
+    private Links links;
 
-	public String getName(){
-		return name;
-	}
 
-	public int getCount(){
-		return count;
-	}
+    public Integer getParent() {
+        return parent;
+    }
 
-	public int getId(){
-		return id;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getSlug(){
-		return slug;
-	}
+    public String getDisplay() {
+        return display;
+    }
+
+    public Integer getMenuOrder() {
+        return menuOrder;
+    }
+
+    public String getYoastHead() {
+        return yoastHead;
+    }
+
+    public Links getLinks() {
+        return links;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public List<SubCategoryItem> getSubCategory() {
+        return subCategory;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+
 }

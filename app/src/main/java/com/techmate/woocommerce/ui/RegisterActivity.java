@@ -26,6 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements ViewPresenter.MainView {

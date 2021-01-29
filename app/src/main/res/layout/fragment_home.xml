@@ -52,6 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtHeading"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="2" />
 
@@ -105,8 +106,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/relHeading"
                     android:layout_marginTop="@dimen/_minus4sdp"
+                    android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2" />
+                    app:spanCount="2"
+                    tools:targetApi="lollipop" />
 
                 <RelativeLayout
                     android:id="@+id/relHeadingSale"
@@ -157,8 +160,10 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/relHeadingSale"
                     android:layout_marginTop="@dimen/_minus4sdp"
+                    android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2" />
+                    app:spanCount="2"
+                    tools:targetApi="lollipop" />
 
                 <RelativeLayout
                     android:id="@+id/relHeadingCategory"
@@ -211,8 +216,10 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_10sdp"
+                    android:nestedScrollingEnabled="false"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="4" />
+                    app:spanCount="4"
+                    tools:targetApi="lollipop" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgBottomBanner"
@@ -271,8 +278,10 @@
                     android:layout_marginTop="@dimen/_minus4sdp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="2"
+                    android:nestedScrollingEnabled="false"
                     tools:itemCount="2"
-                    tools:listitem="@layout/raw_product_item" />
+                    tools:listitem="@layout/raw_product_item"
+                    tools:targetApi="lollipop" />
 
             </RelativeLayout>
 
@@ -289,7 +298,6 @@
             android:indeterminateTintMode="src_atop"
             android:visibility="gone"
             tools:targetApi="lollipop" />
-
 
     </RelativeLayout>
 

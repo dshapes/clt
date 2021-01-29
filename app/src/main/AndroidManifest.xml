@@ -45,9 +45,6 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/Theme.WooCommerce">
-
-
-
         </activity>
         <activity
             android:name=".ui.HomeActivity"

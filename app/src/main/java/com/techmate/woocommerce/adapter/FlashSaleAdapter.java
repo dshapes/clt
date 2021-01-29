@@ -2,6 +2,7 @@ package com.techmate.woocommerce.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.techmate.woocommerce.model.FlashSaleItem;
 import com.techmate.woocommerce.model.TrendingProductItem;
 import com.techmate.woocommerce.ui.HomeActivity;
 import com.techmate.woocommerce.ui.ProductDetailActivity;
+import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.Utility;
 
 import java.util.List;
@@ -66,11 +68,10 @@ public class FlashSaleAdapter extends RecyclerView.Adapter<FlashSaleAdapter.View
             holder.txtOriginalPrice.setText(productItem.getPrice());
         }
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Utility.startActivity((Activity) context, ProductDetailActivity.class);
-            }
+        holder.itemView.setOnClickListener((View.OnClickListener) view -> {
+            Intent intent = new Intent((Activity) context, ProductDetailActivity.class);
+            intent.putExtra(Constants.INTENT_PRODUCT_ID, productItem.getId());
+            context.startActivity(intent);
         });
 
     }

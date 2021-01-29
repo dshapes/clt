@@ -18,6 +18,7 @@
             android:layout_height="@dimen/_200sdp"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
+            android:src="@drawable/placeholder"
             android:background="@color/white" />
 
         <FrameLayout
@@ -115,6 +116,8 @@
         android:orientation="horizontal"
         android:paddingLeft="@dimen/_5sdp"
         android:paddingStart="@dimen/_5sdp"
+        android:paddingEnd="@dimen/_5sdp"
+        android:paddingRight="@dimen/_5sdp"
         android:paddingTop="@dimen/_5sdp">
 
         <TextView
@@ -125,7 +128,7 @@
             android:singleLine="true"
             android:textColor="@color/red"
             android:textSize="@dimen/_10ssp"
-            android:text="Rs 600" />
+            android:text="Rs 600"/>
 
         <TextView
             android:id="@+id/txtOriginalPrice"
@@ -136,7 +139,7 @@
             android:singleLine="true"
             android:textColor="@color/meduim_grey"
             android:textSize="@dimen/_10ssp"
-            android:text="Rs 1000" />
+            android:text="Rs 1000"/>
 
     </LinearLayout>
 

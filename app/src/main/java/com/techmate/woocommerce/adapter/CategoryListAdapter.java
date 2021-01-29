@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.techmate.woocommerce.R;
-import com.techmate.woocommerce.databinding.FragmentCategoriesBinding;
 import com.techmate.woocommerce.fragment.CategoriesFragment;
 import com.techmate.woocommerce.model.CategoryListItem;
 
@@ -20,35 +19,33 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.gilo.woodroid.models.Category;
 
-public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapter.ViewHolder> {
+public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
 
     private static final String TAG = "CategoryItemAdapter";
     private List<Category> categoryListItemList;
     private List<CategoryListItem> categoryHomeItemList;
     private Context context;
     private CategoriesFragment categoriesFragment;
-    private FragmentCategoriesBinding categoriesBinding;
 
-    public CategoryItemAdapter(Context context, List<CategoryListItem> categoryListItemList) {
+    public CategoryListAdapter(Context context, List<CategoryListItem> categoryListItemList) {
         this.context = context;
         this.categoryHomeItemList = categoryListItemList;
     }
 
-    public CategoryItemAdapter(CategoriesFragment categoriesFragment, Context context, List<Category> categoryListItemList, FragmentCategoriesBinding categoriesBinding) {
+    public CategoryListAdapter(CategoriesFragment categoriesFragment, Context context, List<Category> categoryListItemList) {
         this.categoriesFragment = categoriesFragment;
         this.context = context;
         this.categoryListItemList = categoryListItemList;
-        this.categoriesBinding = categoriesBinding;
     }
 
     @NonNull
     @Override
-    public CategoryItemAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CategoryListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.raw_category_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryItemAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryListAdapter.ViewHolder holder, int position) {
 
         if (categoryHomeItemList != null) {
 
@@ -79,7 +76,6 @@ public class CategoryItemAdapter extends RecyclerView.Adapter<CategoryItemAdapte
                     return;
                 }
 
-                categoriesBinding.progressBar.setVisibility(View.VISIBLE);
                 categoriesFragment.showBottomSheetDialog(categoryListItemList.get(position).getParent(),position);
 
             });

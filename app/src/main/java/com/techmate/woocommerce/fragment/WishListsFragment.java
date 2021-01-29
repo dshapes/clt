@@ -70,7 +70,7 @@ public class WishListsFragment extends Fragment {
         }
 
         if (from.equalsIgnoreCase("CategoryDetail")) {
-            binding.recyclerWishlist.setAdapter(new ProductItemAdapter(context, trendingProductItemList));
+            binding.recyclerWishlist.setAdapter(new ProductItemAdapter(context, trendingProductItemList,false));
         } else {
             binding.recyclerWishlist.setAdapter(new WishlistAdapter(context, trendingProductItemList));
         }
