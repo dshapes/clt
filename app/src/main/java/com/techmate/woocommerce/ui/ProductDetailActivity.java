@@ -39,9 +39,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import me.gilo.woodroid.Woocommerce;
 import me.gilo.woodroid.models.Attribute;
+import me.gilo.woodroid.models.LineItem;
 import me.gilo.woodroid.models.Option;
 import me.gilo.woodroid.models.Product;
 import retrofit2.Call;
@@ -60,6 +62,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
     private SliderAdapter sliderAdapter;
     private String productDetails = "", productMaterial = "";
     private List<String> sizeList, colorList;
+    private String productPrice = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,14 +107,15 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
 
                     if (!TextUtils.isEmpty(product.getPrice())) {
                         binding.txtPrice.setText(product.getPrice());
+                        productPrice = product.getPrice();
                     }
 
                     if (!TextUtils.isEmpty(product.getPrice_html())) {
                         binding.txtOriginalPrice.setText(Html.fromHtml(product.getPrice_html()));
                     }
 
-                    if (!TextUtils.isEmpty(product.getShort_description())) {
-                        productDetails = product.getShort_description();
+                    if (!TextUtils.isEmpty(product.getDescription())) {
+                        productDetails = product.getDescription();
                     }
 
                     if (!TextUtils.isEmpty(product.getShort_description())) {
@@ -129,11 +133,9 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
                             if (attribute.getName().equals("Color")) {
                                 colorList.addAll(Arrays.asList(attribute.getOptions()));
                             }
-
                         }
                     }
                 }
-
                 binding.frameProgress.setVisibility(View.GONE);
 
             }
@@ -179,27 +181,6 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
         });
         tabLayoutMediator.attach();
 
-/*
-        for (int i = 0; i < 2; i++) {
-            TrendingProductItem trendingProductItem = new TrendingProductItem();
-            trendingProductItem.setName("Printed A-Line Tunic");
-            trendingProductItem.setPrice("Rs 1000");
-            trendingProductItem.setSalePrice("Rs 600");
-            ImagesItem imagesItem = new ImagesItem();
-            imagesItem.setSrc("https://clothinaa.com/wp-content/uploads/2020/12/830003717-2_1.jpg");
-            List<ImagesItem> imagesItemList = new ArrayList<>();
-            imagesItemList.add(imagesItem);
-            trendingProductItem.setImages(imagesItemList);
-            productItems.add(trendingProductItem);
-        }
-
-        offersAdapter = new MoreOffersAdapter(context);
-        binding.recyclerOffers.setAdapter(offersAdapter);
-
-        adapter = new YouMayLikeAdapter(context, productItems);
-        binding.recyclerYouMayLike.setAdapter(adapter);
-*/
-
     }
 
     @SuppressLint("NonConstantResourceId")
@@ -212,7 +193,7 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
             case R.id.img_wishlist:
                 break;
             case R.id.btnAddtoCart:
-                Utility.startActivity((Activity) context, CartActivity.class);
+                addToCartCall();
                 break;
             case R.id.llSize:
                 BottomSheetFragment bottomSheetFragment = new BottomSheetFragment(R.layout.bottom_sheet_dialog_recycler, 1, this);
@@ -251,6 +232,34 @@ public class ProductDetailActivity extends AppCompatActivity implements View.OnC
                 break;
 
         }
+    }
+
+    private void addToCartCall() {
+
+        Woocommerce woocommerce = Woocommerce.Builder()
+                .setSiteUrl(Constants.BASE_URL)
+                .setApiVersion(Woocommerce.API_V3)
+                .setConsumerKey(Constants.CONSUMER_KEY)
+                .setConsumerSecret(Constants.CONSUMER_SECRET)
+                .build();
+
+        LineItem lineItem = new LineItem();
+        lineItem.total = productPrice;
+
+        woocommerce.CartRepository(context).addToCart(lineItem).enqueue(new Callback<Map<String, LineItem>>() {
+            @Override
+            public void onResponse(Call<Map<String, LineItem>> call, Response<Map<String, LineItem>> response) {
+                if (response.isSuccessful()){
+                    Utility.printLog(TAG,response.message());
+                    Utility.startActivity((Activity) context, CartActivity.class);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String, LineItem>> call, Throwable t) {
+                Utility.printLog(TAG,t.getMessage());
+            }
+        });
     }
 
     @Override

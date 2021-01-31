@@ -1,6 +1,7 @@
 package com.techmate.woocommerce.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +26,13 @@ import com.techmate.woocommerce.model.Data;
 import com.techmate.woocommerce.model.HomeResponse;
 import com.techmate.woocommerce.mvp.MainModel;
 import com.techmate.woocommerce.mvp.ViewPresenter;
+import com.techmate.woocommerce.ui.AllFlashSaleActivity;
+import com.techmate.woocommerce.ui.AllOccasionWearActivity;
+import com.techmate.woocommerce.ui.AllTrendingProductListing;
 import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.Utility;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,6 +129,12 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
                 homeBinding.txtHeadingTrending.setText(getString(R.string.trending));
                 productItemAdapter = new ProductItemAdapter(context, data.getTrendingProduct(),false);
                 homeBinding.recyclerTrending.setAdapter(productItemAdapter);
+
+                homeBinding.relHeading.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, AllTrendingProductListing.class);
+                    intent.putExtra(Constants.INTENT_PRODUCTS_LIST,(Serializable) data.getTrendingProduct());
+                    context.startActivity(intent);
+                });
             }
 
             if (data.getFlashSale() != null) {
@@ -131,6 +142,12 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
                 homeBinding.txtHeadingSale.setText(getString(R.string.flash_sale));
                 flashSaleAdapter = new FlashSaleAdapter(context, data.getFlashSale());
                 homeBinding.recyclerFlashSale.setAdapter(flashSaleAdapter);
+
+                homeBinding.relHeadingSale.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, AllFlashSaleActivity.class);
+                    intent.putExtra(Constants.INTENT_PRODUCTS_LIST,(Serializable) data.getFlashSale());
+                    context.startActivity(intent);
+                });
             }
 
             if (data.getBottomBanner() != null) {
@@ -150,6 +167,12 @@ public class HomeFragment extends Fragment implements ViewPresenter.MainView {
                 homeBinding.txtHeadingOccassion.setText(getString(R.string.occassion_wear));
                 occassionWearAdapter = new OccassionWearAdapter(context, data.getOccasionWear());
                 homeBinding.recyclerOccassion.setAdapter(occassionWearAdapter);
+
+                homeBinding.relHeadingOccassion.setOnClickListener(v -> {
+                    Intent intent = new Intent(context, AllOccasionWearActivity.class);
+                    intent.putExtra(Constants.INTENT_PRODUCTS_LIST,(Serializable) data.getOccasionWear());
+                    context.startActivity(intent);
+                });
             }
         }
     }

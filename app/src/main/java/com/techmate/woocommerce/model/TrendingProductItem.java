@@ -1,9 +1,12 @@
 package com.techmate.woocommerce.model;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class TrendingProductItem{
+import me.gilo.woodroid.models.Product;
+
+public class TrendingProductItem implements Serializable {
 
 	@SerializedName("short_description")
 	private String shortDescription;

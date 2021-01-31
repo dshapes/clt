@@ -18,7 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/NoFullScreenTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.FilterActivity"/>
+        <activity android:name=".ui.AllOccasionWearActivity"></activity>
+        <activity android:name=".ui.AllFlashSaleActivity" />
+        <activity android:name=".ui.AllTrendingProductListing" />
+        <activity android:name=".ui.FilterActivity" />
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.NotificationActivity" />
         <activity android:name=".ui.OrderDetailActivity" />
@@ -29,7 +32,7 @@
         <activity android:name=".ui.ShipToActivity" />
         <activity android:name=".ui.CategoryDetailActivity" />
         <activity android:name=".ui.ProductDetailActivity" />
-        <activity android:name=".ui.CartActivity"/>
+        <activity android:name=".ui.CartActivity" />
         <activity
             android:name=".ui.ForgotPasswordActivity"
             android:theme="@style/Theme.WooCommerce"
@@ -45,19 +48,15 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/Theme.WooCommerce">
-        </activity>
-        <activity
-            android:name=".ui.HomeActivity"
-            android:theme="@style/NoFullScreenTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
+        <activity
+            android:name=".ui.HomeActivity"
+            android:theme="@style/NoFullScreenTheme" />
     </application>
 
 </manifest>

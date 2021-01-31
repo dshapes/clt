@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements ViewPresenter.Ma
             return;
         }
 
+        Utility.hideKeyboard(this);
         signIn();
 
     }
@@ -102,6 +103,7 @@ public class LoginActivity extends AppCompatActivity implements ViewPresenter.Ma
     @Override
     public void mainError(String err) {
         Utility.printLog(TAG, "err " + err);
+        Toast.makeText(context,"Error " + err,Toast.LENGTH_SHORT).show();
     }
 
     public void redirectToForgotPassword(View view) {

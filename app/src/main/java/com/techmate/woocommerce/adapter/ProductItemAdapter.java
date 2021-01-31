@@ -3,12 +3,10 @@ package com.techmate.woocommerce.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.like.LikeButton;
-import com.like.OnLikeListener;
 import com.techmate.woocommerce.R;
-import com.techmate.woocommerce.fragment.HomeFragment;
 import com.techmate.woocommerce.model.TrendingProductItem;
 import com.techmate.woocommerce.ui.HomeActivity;
 import com.techmate.woocommerce.ui.ProductDetailActivity;
 import com.techmate.woocommerce.utils.Constants;
-import com.techmate.woocommerce.utils.Utility;
 
 import java.util.ArrayList;
 import java.util.List;

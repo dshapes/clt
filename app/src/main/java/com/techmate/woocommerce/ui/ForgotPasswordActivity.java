@@ -39,6 +39,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ViewPre
         if (!Utility.isValidEmail(binding.edtEmail.getText().toString().trim())) {
             binding.edtEmail.setError("Please enter valid email");
         } else {
+            Utility.hideKeyboard(this);
             HashMap<String, String> hashMap = new HashMap<>();
             hashMap.put(Constants.PARAM_EMAIL, binding.edtEmail.getText().toString().trim());
             mainModel = new MainModel(ForgotPasswordActivity.this, context);
@@ -77,6 +78,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements ViewPre
     @Override
     public void mainError(String err) {
         Utility.printLog(TAG, "err " + err);
+        Toast.makeText(context,"Error " + err,Toast.LENGTH_SHORT).show();
     }
 
 }

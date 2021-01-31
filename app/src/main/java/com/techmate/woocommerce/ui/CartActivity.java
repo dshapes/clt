@@ -23,6 +23,13 @@ import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.Utility;
 
 import java.util.HashMap;
+import java.util.Map;
+
+import me.gilo.woodroid.Woocommerce;
+import me.gilo.woodroid.models.LineItem;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CartActivity extends AppCompatActivity implements View.OnClickListener, BottomSheetCallback, QuantityChangeListener {
 
@@ -46,6 +53,30 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         binding.recyclerCart.addItemDecoration(itemDecoration);
         adapter = new CartItemAdapter(context);
         binding.recyclerCart.setAdapter(adapter);
+        apiCall();
+    }
+
+    private void apiCall() {
+        Woocommerce woocommerce = Woocommerce.Builder()
+                .setSiteUrl(Constants.BASE_URL)
+                .setApiVersion(Woocommerce.API_V3)
+                .setConsumerKey(Constants.CONSUMER_KEY)
+                .setConsumerSecret(Constants.CONSUMER_SECRET)
+                .build();
+
+        woocommerce.CartRepository(context).cart().enqueue(new Callback<Map<String, LineItem>>() {
+            @Override
+            public void onResponse(Call<Map<String, LineItem>> call, Response<Map<String, LineItem>> response) {
+                if (response.isSuccessful()){
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Map<String, LineItem>> call, Throwable t) {
+
+            }
+        });
     }
 
     @SuppressLint("NonConstantResourceId")

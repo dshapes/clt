@@ -1,37 +1,22 @@
 package com.techmate.woocommerce.fragment;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.UiThread;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
 import com.techmate.woocommerce.R;
 import com.techmate.woocommerce.adapter.CategoryItemAdapter;
-
-import com.techmate.woocommerce.control.BottomSheetCallback;
 import com.techmate.woocommerce.control.BottomSheetFragment;
 import com.techmate.woocommerce.control.GridSpacingItemDecoration;
-
 import com.techmate.woocommerce.databinding.FragmentCategoriesBinding;
-import com.techmate.woocommerce.listener.CategoryListener;
-import com.techmate.woocommerce.model.CategoryListItem;
-import com.techmate.woocommerce.model.HomeResponse;
-import com.techmate.woocommerce.mvp.MainModel;
-import com.techmate.woocommerce.mvp.ViewPresenter;
 import com.techmate.woocommerce.ui.CategoryDetailActivity;
 import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.Utility;
@@ -112,7 +97,6 @@ public class CategoriesFragment extends Fragment {
         });
     }
 
-
     BottomSheetFragment bottomSheetFragment;
     public void showBottomSheetDialog(int parentId, int pos) {
 
@@ -139,11 +123,11 @@ public class CategoriesFragment extends Fragment {
                     if (response.body() != null) {
                         categoriesByParent.addAll(response.body());
                         bottomSheetFragment = new BottomSheetFragment(R.layout.bottom_sheet_dialog_category, categoriesByParent, categoryListItemList.get(pos).getName(), position -> {
+                            bottomSheetFragment.dismiss();
                             Intent intent = new Intent(context, CategoryDetailActivity.class);
                             intent.putExtra(Constants.INTENT_CATEGORY_ID, categoriesByParent.get(position).getParent());
                             intent.putExtra(Constants.INTENT_CATEGORY_NAME, categoryListItemList.get(pos).getName());
                             startActivity(intent);
-                            bottomSheetFragment.dismiss();
                         });
 
                         if (getFragmentManager() != null) {
@@ -160,7 +144,5 @@ public class CategoriesFragment extends Fragment {
                 categoriesBinding.frameProgress.setVisibility(View.GONE);
             }
         });
-
-
     }
 }

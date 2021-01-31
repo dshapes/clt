@@ -36,6 +36,7 @@ public class Constants {
     public static final String PARAM_PASSWORD = "password";
     public static final String PARAM_DOB = "dob";
     public static final String INTENT_SUB_CATEGORY_ID = "subCategoryId";
+    public static final String INTENT_PRODUCTS_LIST = "productsList";
 
     public static final String INTENT_MODE = "mode";
     public static final String INTENT_PRODUCT_ID = "product_id";

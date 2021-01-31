@@ -17,15 +17,17 @@ import com.techmate.woocommerce.R;
 
 import java.util.List;
 
+import me.gilo.woodroid.models.Attribute;
+
 public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder> {
 
-    private static final String TAG = "CartItemAdapter";
-    private List<String> filterList;
+    private static final String TAG = "FilterAdapter";
+    private List<Attribute> attributeList;
     private Context context;
 
-    public FilterAdapter(Context context, List<String> filterList) {
+    public FilterAdapter(Context context, List<Attribute> filterList) {
         this.context = context;
-        this.filterList = filterList;
+        this.attributeList = filterList;
     }
 
     @NonNull
@@ -37,49 +39,21 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        switch (position){
-            case 0:
-                holder.btnFilterName.setText("Price");
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    holder.btnFilterName.setTextColor(context.getColor(R.color.red));
-                    holder.btnFilterName.setIcon(context.getDrawable(R.drawable.ic_price_red));
-                    holder.btnFilterName.setIconTintResource(R.color.red);
-                }
-                break;
-            case 1:
-                holder.btnFilterName.setText("Category");
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    holder.btnFilterName.setIcon(context.getDrawable(R.drawable.ic_category));
-                    holder.btnFilterName.setIconTintResource(R.color.maroon);
-                }
-                break;
-            case 2:
-                holder.btnFilterName.setText("Color");
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    holder.btnFilterName.setIcon(context.getDrawable(R.drawable.ic_color));
-                    holder.btnFilterName.setIconTintResource(R.color.maroon);
-                }
-                break;
-            case 3:
-                holder.btnFilterName.setText("Size");
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    holder.btnFilterName.setIcon(context.getDrawable(R.drawable.ic_size));
-                    holder.btnFilterName.setIconTintResource(R.color.maroon);
-                }
-                break;
-            case 4:
-                holder.btnFilterName.setText("Material");
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    holder.btnFilterName.setIcon(context.getDrawable(R.drawable.ic_material));
-                    holder.btnFilterName.setIconTintResource(R.color.maroon);
-                }
-                break;
+        holder.btnFilterName.setText(attributeList.get(position).getName());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            holder.btnFilterName.setTextColor(context.getColor(R.color.red));
+            holder.btnFilterName.setIcon(context.getDrawable(R.drawable.ic_price_red));
+            holder.btnFilterName.setIconTintResource(R.color.red);
         }
+
+        holder.itemView.setOnClickListener(v -> {
+
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return attributeList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -13,13 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.techmate.woocommerce.R;
 
+import java.util.List;
+
+import me.gilo.woodroid.models.LineItem;
+
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHolder> {
 
     private static final String TAG = "CartItemAdapter";
     private Context context;
+    private List<LineItem> lineItemList;
 
     public CartItemAdapter(Context context) {
         this.context = context;
+    }
+
+    public CartItemAdapter(List<LineItem> lineItemList) {
+        this.context = context;
+        this.lineItemList = lineItemList;
     }
 
     @NonNull
@@ -30,7 +40,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CartItemAdapter.ViewHolder holder, int position) {
-        Glide.with(context).load("https://clothinaa.com/wp-content/uploads/2020/11/KR720KSL.jpg").centerInside().into(holder.imgCartItem);
+
+        if (lineItemList == null && lineItemList.size() == 0){
+            Glide.with(context).load("https://clothinaa.com/wp-content/uploads/2020/11/KR720KSL.jpg").centerInside().into(holder.imgCartItem);
+        }
+
+
     }
 
     @Override
