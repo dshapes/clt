@@ -64,7 +64,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
                 .setConsumerSecret(Constants.CONSUMER_SECRET)
                 .build();
 
-        woocommerce.CartRepository(context).cart().enqueue(new Callback<Map<String, LineItem>>() {
+        /*woocommerce.CartRepository(context).cart().enqueue(new Callback<Map<String, LineItem>>() {
             @Override
             public void onResponse(Call<Map<String, LineItem>> call, Response<Map<String, LineItem>> response) {
                 if (response.isSuccessful()){
@@ -76,7 +76,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
             public void onFailure(Call<Map<String, LineItem>> call, Throwable t) {
 
             }
-        });
+        });*/
     }
 
     @SuppressLint("NonConstantResourceId")

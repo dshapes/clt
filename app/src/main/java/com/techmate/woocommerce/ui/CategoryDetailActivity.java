@@ -112,7 +112,7 @@ public class CategoryDetailActivity extends AppCompatActivity implements View.On
             case R.id.imgSort:
                 break;
             case R.id.imgFilter:
-                Utility.startActivity(this, FilterActivity.class);
+                //Utility.startActivity(this, FilterActivity.class);
                 break;
         }
     }

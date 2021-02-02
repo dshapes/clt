@@ -110,9 +110,9 @@ public class RegisterActivity extends AppCompatActivity implements ViewPresenter
             return false;
         }
 
-        prefManager.setString(PrefManager.KEY_FULL_NAME,binding.edtFullName.getText().toString());
-        prefManager.setString(PrefManager.KEY_DOB,binding.edtDob.getText().toString());
-        prefManager.setString(PrefManager.KEY_EMAIL,binding.edtEmail.getText().toString());
+        prefManager.setString(PrefManager.KEY_FULL_NAME, binding.edtFullName.getText().toString());
+        prefManager.setString(PrefManager.KEY_DOB, binding.edtDob.getText().toString());
+        prefManager.setString(PrefManager.KEY_EMAIL, binding.edtEmail.getText().toString());
         return true;
 
     }
@@ -148,7 +148,6 @@ public class RegisterActivity extends AppCompatActivity implements ViewPresenter
         Utility.printLog(TAG, responseModel.getMessage());
         Utility.printGson(TAG, responseModel);
         Utility.startActivity(RegisterActivity.this, HomeActivity.class, true);
-
     }
 
     @Override
