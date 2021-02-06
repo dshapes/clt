@@ -70,6 +70,21 @@ public interface ViewPresenter {
         void mainError(String err);
     }
 
+    interface ProfileView {
+
+        boolean checkInternet();
+
+        void mainValidateError(String whichError);
+
+        void showProgressBar();
+
+        void hideProgressBar();
+
+        void mainSuccess(HomeResponse homeResponse, String whichResponse);
+
+        void mainError(String err);
+    }
+
     interface MainPresenter {
 
         void getData(String path, Map<String, String> hashMap);
@@ -78,6 +93,6 @@ public interface ViewPresenter {
         void getCategoryListing(String path);
         void getProductDetails(String path);
         void getOffers(String path);
-
+        void updateProfile(String path, Map<String, String> hashMap);
     }
 }

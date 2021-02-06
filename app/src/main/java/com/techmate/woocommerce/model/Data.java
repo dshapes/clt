@@ -30,6 +30,9 @@ public class Data implements Serializable {
 	@SerializedName("bottomBanner")
 	private String bottomBanner;
 
+	@SerializedName("data")
+	private Data_ data_;
+
 	public List<TrendingProductItem> getTrendingProduct(){
 		return trendingProduct;
 	}
@@ -59,4 +62,8 @@ public class Data implements Serializable {
 	}
 
 	public Integer getStatus() { return status; }
+
+	public Data_ getData_() {
+		return data_;
+	}
 }

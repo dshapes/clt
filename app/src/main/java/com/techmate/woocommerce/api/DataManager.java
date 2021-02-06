@@ -197,4 +197,24 @@ public class DataManager {
                     }, throwable -> offersCallback.onError("" + throwable.getMessage()));
         }
     }
+
+    public void updateProfile(String path, Map<String, String> hashMap, final ConfirmationCallback confirmationCallback) {
+
+        apiService = ApiClient.getPOSTClient(false);
+
+        this.confirmationCallback = confirmationCallback;
+        Observable<HomeResponse> mainObservable = apiService.getData(path,hashMap);
+        if (mainObservable != null) {
+            mainObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(result -> result)
+                    .subscribe(main -> {
+                        if (main != null) {
+                            confirmationCallback.onSuccess(main);
+                        } else {
+                            confirmationCallback.onError("Error");
+                        }
+                    }, throwable -> confirmationCallback.onError("" + throwable.getMessage()));
+        }
+    }
 }

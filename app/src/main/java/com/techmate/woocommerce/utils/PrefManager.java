@@ -10,9 +10,16 @@ public class PrefManager {
     public static String KEY_FULL_NAME = "fullName";
     public static String KEY_DOB = "dob";
     public static String KEY_EMAIL = "email";
+    public static String KEY_MOBILE_PHONE = "mobile_no";
     public static String KEY_USER_TYPE = "userType";
     public static String KEY_RECEIVE_NOTIFICATION = "push_notification";
     public static final String FCM_REGISTER_ID = "fcm_register_id";
+    public static String KEY_GOOGLE_ID = "google_id";
+    public static String KEY_FB_ID = "fb_id";
+    public static String KEY_USER_IMAGE = "user_avatar";
+    public static String KEY_LAST_NAME = "last_name";
+    public static String KEY_FIRST_NAME = "first_name";
+    public static String KEY_GENDER = "gender";
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 

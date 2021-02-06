@@ -20,6 +20,7 @@ public class MainModel implements ViewPresenter.MainPresenter {
     ViewPresenter.CategoryListView categoryListView;
     ViewPresenter.ProductDetailView productDetailView;
     ViewPresenter.OffersView offersView;
+    ViewPresenter.ProfileView profileView;
     Context mContext;
     DataManager dataManager;
 
@@ -43,6 +44,12 @@ public class MainModel implements ViewPresenter.MainPresenter {
 
     public MainModel(ViewPresenter.OffersView offersView, Context mContext) {
         this.offersView = offersView;
+        this.mContext = mContext;
+        dataManager = DataManager.getInstance(mContext);
+    }
+
+    public MainModel(ViewPresenter.ProfileView profileView, Context mContext) {
+        this.profileView = profileView;
         this.mContext = mContext;
         dataManager = DataManager.getInstance(mContext);
     }
@@ -124,11 +131,11 @@ public class MainModel implements ViewPresenter.MainPresenter {
 
         categoryListView.showProgressBar();
         if (categoryListView.checkInternet()) {
-            dataManager.getListingData(path, Constants.CONSUMER_KEY,Constants.CONSUMER_SECRET, new CategoryListingCallback() {
+            dataManager.getListingData(path, Constants.CONSUMER_KEY, Constants.CONSUMER_SECRET, new CategoryListingCallback() {
 
                 @Override
                 public void onSuccess(List<CategoryListItem> home) {
-                    categoryListView.mainSuccess(home,path);
+                    categoryListView.mainSuccess(home, path);
                     categoryListView.hideProgressBar();
                 }
 
@@ -149,11 +156,11 @@ public class MainModel implements ViewPresenter.MainPresenter {
 
         productDetailView.showProgressBar();
         if (productDetailView.checkInternet()) {
-            dataManager.getProductDetail(path, Constants.CONSUMER_KEY,Constants.CONSUMER_SECRET, new ProductDetailCallback() {
+            dataManager.getProductDetail(path, Constants.CONSUMER_KEY, Constants.CONSUMER_SECRET, new ProductDetailCallback() {
 
                 @Override
                 public void onSuccess(ProductDetailResponse home) {
-                    productDetailView.mainSuccess(home,path);
+                    productDetailView.mainSuccess(home, path);
                     productDetailView.hideProgressBar();
                 }
 
@@ -175,11 +182,11 @@ public class MainModel implements ViewPresenter.MainPresenter {
 
         offersView.showProgressBar();
         if (offersView.checkInternet()) {
-            dataManager.getOffers(path, Constants.CONSUMER_KEY,Constants.CONSUMER_SECRET, new OffersCallback() {
+            dataManager.getOffers(path, Constants.CONSUMER_KEY, Constants.CONSUMER_SECRET, new OffersCallback() {
 
                 @Override
                 public void onSuccess(List<HomeResponse> home) {
-                    offersView.mainSuccess(home,path);
+                    offersView.mainSuccess(home, path);
                     offersView.hideProgressBar();
                 }
 
@@ -193,6 +200,33 @@ public class MainModel implements ViewPresenter.MainPresenter {
         } else {
             offersView.mainValidateError(path);
             offersView.hideProgressBar();
+        }
+
+    }
+
+    @Override
+    public void updateProfile(String path, Map<String, String> hashMap) {
+
+        profileView.showProgressBar();
+        if (profileView.checkInternet()) {
+            dataManager.updateProfile(path, hashMap, new ConfirmationCallback() {
+
+                @Override
+                public void onSuccess(HomeResponse home) {
+                    profileView.mainSuccess(home, path);
+                    profileView.hideProgressBar();
+                }
+
+                @Override
+                public void onError(String err) {
+                    profileView.mainError(err);
+                    profileView.hideProgressBar();
+                }
+
+            });
+        } else {
+            profileView.mainValidateError(path);
+            profileView.hideProgressBar();
         }
 
     }

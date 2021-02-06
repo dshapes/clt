@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Clothina</string>
+
+    <string name="facebook_app_id">432131261355352</string>
+    <string name="fb_login_protocol_scheme">fb432131261355352</string>
+
     <string name="let_s_get_started">Let\'s Get Started</string>
     <string name="create_a_new_account">Create a new account</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
@@ -112,4 +116,6 @@
     <string name="promo">Promo</string>
     <string name="apply">Apply</string>
     <string name="something_went_wrong">Something went wrong. Please try again later.</string>
+
+
 </resources>

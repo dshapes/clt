@@ -28,11 +28,14 @@ public class Constants {
     public static final String API_PRODUCTS = "products";
     public static final String API_ATTRIBUTES = "products/attributes";
     public static final String API_COUPONS = "coupons";
+    public static final String PARAM_GENDER = "gender";
     public static  int SIZE_VIEW_TYPE = 0;
     public static  int COLOR_VIEW_TYPE = 1;
 
+    public static final String PARAM_ID = "id";
     public static final String PARAM_NAME = "name";
     public static final String PARAM_EMAIL = "email";
+    public static final String PARAM_MOBILE_NO = "mobile";
     public static final String PARAM_PASSWORD = "password";
     public static final String PARAM_DOB = "dob";
     public static final String INTENT_SUB_CATEGORY_ID = "subCategoryId";

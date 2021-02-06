@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/NoFullScreenTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.AllOccasionWearActivity"></activity>
+        <activity android:name=".ui.AllOccasionWearActivity"/>
         <activity android:name=".ui.AllFlashSaleActivity" />
         <activity android:name=".ui.AllTrendingProductListing" />
         <activity android:name=".ui.FilterActivity" />
@@ -48,15 +48,26 @@
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/Theme.WooCommerce">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+
         </activity>
         <activity
             android:name=".ui.HomeActivity"
-            android:theme="@style/NoFullScreenTheme" />
+            android:theme="@style/NoFullScreenTheme">
+
+
+
+        </activity>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
     </application>
 
 </manifest>
