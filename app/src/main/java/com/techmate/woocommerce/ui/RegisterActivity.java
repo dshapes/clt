@@ -10,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -171,6 +172,8 @@ public class RegisterActivity extends AppCompatActivity implements ViewPresenter
             return dialog;
         }
 
+
+        @Override
         public void onDateSet(DatePicker view, int year, int month, int day) {
 
             Calendar newDate = Calendar.getInstance();

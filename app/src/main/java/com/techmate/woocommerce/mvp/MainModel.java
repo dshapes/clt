@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 public class MainModel implements ViewPresenter.MainPresenter {
 
     private static final String TAG = MainModel.class.getSimpleName();
@@ -226,6 +229,33 @@ public class MainModel implements ViewPresenter.MainPresenter {
             });
         } else {
             profileView.mainValidateError(path);
+            profileView.hideProgressBar();
+        }
+
+    }
+
+    @Override
+    public void updateProfileImage(RequestBody id, MultipartBody.Part imageFile) {
+
+        profileView.showProgressBar();
+        if (profileView.checkInternet()) {
+            dataManager.updateProfileImage(id, imageFile, new ConfirmationCallback() {
+
+                @Override
+                public void onSuccess(HomeResponse home) {
+                    profileView.mainSuccess(home, "updateProfileImage");
+                    profileView.hideProgressBar();
+                }
+
+                @Override
+                public void onError(String err) {
+                    profileView.mainError(err);
+                    profileView.hideProgressBar();
+                }
+
+            });
+        } else {
+            profileView.mainValidateError("updateProfileImage");
             profileView.hideProgressBar();
         }
 

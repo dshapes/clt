@@ -38,6 +38,7 @@ public class Constants {
     public static final String PARAM_MOBILE_NO = "mobile";
     public static final String PARAM_PASSWORD = "password";
     public static final String PARAM_DOB = "dob";
+    public static final String PARAM_PROFILE_PIC = "profile_pic";
     public static final String INTENT_SUB_CATEGORY_ID = "subCategoryId";
     public static final String INTENT_PRODUCTS_LIST = "productsList";
 
@@ -45,6 +46,7 @@ public class Constants {
     public static final String INTENT_PRODUCT_ID = "product_id";
     public static final String INTENT_CATEGORY_ID = "category_id";
     public static final String INTENT_CATEGORY_NAME = "category_name";
+    public static final String INTENT_CATEGORY_POS = "category_pos";
     public static final String MODE_ADD = "add";
     public static final String MODE_EDIT = "edit";
 

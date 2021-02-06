@@ -19,6 +19,8 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class DataManager {
 
@@ -204,6 +206,26 @@ public class DataManager {
 
         this.confirmationCallback = confirmationCallback;
         Observable<HomeResponse> mainObservable = apiService.getData(path,hashMap);
+        if (mainObservable != null) {
+            mainObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map(result -> result)
+                    .subscribe(main -> {
+                        if (main != null) {
+                            confirmationCallback.onSuccess(main);
+                        } else {
+                            confirmationCallback.onError("Error");
+                        }
+                    }, throwable -> confirmationCallback.onError("" + throwable.getMessage()));
+        }
+    }
+
+    public void updateProfileImage(RequestBody id, MultipartBody.Part imageFile, final ConfirmationCallback confirmationCallback) {
+
+        apiService = ApiClient.getPOSTClient(false);
+
+        this.confirmationCallback = confirmationCallback;
+        Observable<HomeResponse> mainObservable = apiService.uploadProfileImage(id,imageFile);
         if (mainObservable != null) {
             mainObservable.subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())

@@ -126,6 +126,7 @@ public class CategoriesFragment extends Fragment {
                             bottomSheetFragment.dismiss();
                             Intent intent = new Intent(context, CategoryDetailActivity.class);
                             intent.putExtra(Constants.INTENT_CATEGORY_ID, categoriesByParent.get(position).getParent());
+                            intent.putExtra(Constants.INTENT_CATEGORY_POS, position);
                             intent.putExtra(Constants.INTENT_CATEGORY_NAME, categoryListItemList.get(pos).getName());
                             startActivity(intent);
                         });

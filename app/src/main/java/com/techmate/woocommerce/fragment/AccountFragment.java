@@ -15,21 +15,25 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.facebook.login.Login;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.techmate.woocommerce.R;
 import com.techmate.woocommerce.databinding.FragmentAccountBinding;
 import com.techmate.woocommerce.databinding.FragmentHomeBinding;
 import com.techmate.woocommerce.ui.AddShippingAddressActivity;
+import com.techmate.woocommerce.ui.LoginActivity;
 import com.techmate.woocommerce.ui.NotificationActivity;
 import com.techmate.woocommerce.ui.OrderListActivity;
 import com.techmate.woocommerce.ui.ProfileActivity;
 import com.techmate.woocommerce.ui.ShipToActivity;
+import com.techmate.woocommerce.utils.PrefManager;
 import com.techmate.woocommerce.utils.Utility;
 
 public class AccountFragment extends Fragment implements View.OnClickListener {
 
     private FragmentAccountBinding binding;
     private Context context;
+    private PrefManager prefManager;
 
     public static AccountFragment getInstance() {
         return new AccountFragment();
@@ -45,6 +49,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     }
 
     private void initViews() {
+        prefManager = new PrefManager(context);
         binding.llMyOrders.setOnClickListener(this);
         binding.llShippingAddress.setOnClickListener(this);
         binding.llNotifications.setOnClickListener(this);
@@ -78,15 +83,13 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                 materialAlertDialogBuilder.setIcon(R.drawable.ic_logout);
                 materialAlertDialogBuilder.setTitle("Logout");
                 materialAlertDialogBuilder.setMessage("Are you sure you want to logout from this app?");
-                materialAlertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (getActivity() == null) {
-                            return;
-                        }
-                        getActivity().finish();
+                materialAlertDialogBuilder.setPositiveButton("Yes", (dialog, which) -> {
+                    if (getActivity() == null) {
+                        return;
                     }
-
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    prefManager.deleteUserPrefData();
+                    Utility.startActivity((Activity) context, LoginActivity.class,true);
                 });
                 materialAlertDialogBuilder.setNegativeButton("No", null);
                 materialAlertDialogBuilder.show();

@@ -1,19 +1,27 @@
 package com.techmate.woocommerce.ui;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatEditText;
-
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.InputType;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.fragment.app.DialogFragment;
+
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.techmate.woocommerce.R;
 import com.techmate.woocommerce.databinding.ActivityProfileBinding;
 import com.techmate.woocommerce.model.HomeResponse;
@@ -23,13 +31,18 @@ import com.techmate.woocommerce.utils.Constants;
 import com.techmate.woocommerce.utils.PrefManager;
 import com.techmate.woocommerce.utils.Utility;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import me.gilo.woodroid.Woocommerce;
 import me.gilo.woodroid.models.Customer;
-import me.gilo.woodroid.models.LineItem;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,10 +50,11 @@ import retrofit2.Response;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener, ViewPresenter.ProfileView {
 
     private static final String TAG = "ProfileActivity";
-    private ActivityProfileBinding binding;
+    private static ActivityProfileBinding binding;
     private PrefManager prefManager;
     private Context context;
     private MainModel mainModel;
+    private File fileToUpload;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,12 +69,26 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private void initViews() {
 
         prefManager = new PrefManager(context);
+        mainModel = new MainModel(this, context);
         binding.imgBack.setOnClickListener(this);
+        binding.relImage.setOnClickListener(this);
         binding.btnEditProfile.setOnClickListener(this);
-        binding.edtFullName.setText(prefManager.getString(PrefManager.KEY_FULL_NAME, "Enter Full Name"));
-        binding.edtEmail.setText(prefManager.getString(PrefManager.KEY_EMAIL, "Enter Email"));
-        binding.edtDob.setText(prefManager.getString(PrefManager.KEY_DOB, "Enter Date of Birth"));
-        binding.edtPhone.setText(prefManager.getString(PrefManager.KEY_MOBILE_PHONE, "Enter Mobile No"));
+        binding.edtFullName.setText(prefManager.getString(PrefManager.KEY_FULL_NAME, ""));
+        if (!TextUtils.isEmpty(prefManager.getString(PrefManager.KEY_EMAIL, "Enter Email"))) {
+            binding.edtEmail.setText(prefManager.getString(PrefManager.KEY_EMAIL, "Enter Email"));
+        } else {
+            binding.edtEmail.setText("Enter Email");
+        }
+        if (!TextUtils.isEmpty(prefManager.getString(PrefManager.KEY_DOB, ""))) {
+            binding.edtDob.setText(prefManager.getString(PrefManager.KEY_DOB, "Enter Date of Birth"));
+        } else {
+            binding.edtDob.setText("Enter Date of Birth");
+        }
+        if (!TextUtils.isEmpty(prefManager.getString(PrefManager.KEY_MOBILE_PHONE, ""))) {
+            binding.edtPhone.setText(prefManager.getString(PrefManager.KEY_MOBILE_PHONE, ""));
+        } else {
+            binding.edtPhone.setText("Enter Mobile No");
+        }
 
         binding.edtFullName.setFocusable(false);
         binding.edtEmail.setFocusable(false);
@@ -90,16 +118,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             return false;
         });
 
-        /*binding.edtDob.setOnTouchListener((v, event) -> {
+        binding.edtDob.setOnTouchListener((v, event) -> {
             final int DRAWABLE_RIGHT = 2;
             if (event.getAction() == MotionEvent.ACTION_UP) {
                 if (event.getRawX() >= (binding.edtDob.getRight() - binding.edtDob.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                    toggleFocus(binding.edtDob);
+                    openCalendar();
                     return true; // consume touch even
                 }
             }
             return false;
-        });*/
+        });
 
         binding.edtPhone.setOnTouchListener((v, event) -> {
             final int DRAWABLE_RIGHT = 2;
@@ -122,6 +150,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             }
             return false;
         });
+    }
+
+    private void openCalendar() {
+
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
     private void toggleFocus(AppCompatEditText editText) {
@@ -149,9 +183,37 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 onBackPressed();
                 break;
             case R.id.btnEditProfile:
-                editProfileCall();
+                if (fileToUpload != null) {
+                    editProfileImageCall();
+                } else {
+                    editProfileCall();
+                }
+                break;
+            case R.id.relImage:
+                addProfilePic();
                 break;
         }
+    }
+
+    private void addProfilePic() {
+
+        ImagePicker.Companion.with(this)
+                .crop()                    //Crop image(Optional), Check Customization for more option
+                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
+
+    }
+
+    private void editProfileImageCall() {
+
+        int id = Integer.parseInt(prefManager.getString(PrefManager.KEY_USERID, ""));
+        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), fileToUpload);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("profile_pic", fileToUpload.getName(), requestFile);
+
+        RequestBody userId = RequestBody.create(okhttp3.MultipartBody.FORM, String.valueOf(id));
+        mainModel.updateProfileImage(userId, body);
+
     }
 
     private void editProfileCall() {
@@ -165,8 +227,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         hashMap.put(Constants.PARAM_DOB, binding.edtDob.getText().toString().trim());
         hashMap.put(Constants.PARAM_PASSWORD, binding.edtPassword.getText().toString().trim());
         hashMap.put(Constants.PARAM_GENDER, "Male");
-
-        mainModel = new MainModel(this, context);
         mainModel.updateProfile(Constants.API_UPDATE_USER, hashMap);
 
     }
@@ -195,10 +255,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void mainSuccess(HomeResponse homeResponse, String whichResponse) {
 
-        Toast.makeText(getApplicationContext(), "Success " + homeResponse.getMessage(), Toast.LENGTH_SHORT).show();
-        Utility.printLog(TAG, homeResponse.getMessage());
-        Utility.printGson(TAG, homeResponse);
-
+        if (whichResponse.equals(Constants.API_UPDATE_USER)) {
+            Toast.makeText(getApplicationContext(), "Success " + homeResponse.getMessage(), Toast.LENGTH_SHORT).show();
+            Utility.printLog(TAG, homeResponse.getMessage());
+            Utility.printGson(TAG, homeResponse);
+        } else if (whichResponse.equals(Constants.API_PROFILE)) {
+            Toast.makeText(getApplicationContext(), "Profile picture updated succesfully", Toast.LENGTH_SHORT).show();
+            //prefManager.setString(PrefManager.KEY_USER_IMAGE,homeResponse.getData().toString());
+            Utility.printLog(TAG, homeResponse.getMessage());
+            Utility.printGson(TAG, homeResponse);
+        }
     }
 
     @Override
@@ -207,32 +273,48 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         Utility.printLog(TAG, "err " + err);
     }
 
-    public void profileCall() {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        Woocommerce woocommerce = Woocommerce.Builder()
-                .setSiteUrl(Constants.BASE_URL)
-                .setApiVersion(Woocommerce.API_V3)
-                .setConsumerKey(Constants.CONSUMER_KEY)
-                .setConsumerSecret(Constants.CONSUMER_SECRET)
-                .build();
+        if (resultCode == Activity.RESULT_OK) {
+            Uri fileUri = data.getData();
+            binding.image.setImageURI(fileUri);
 
-        Customer customer = new Customer();
-        customer.id = Integer.parseInt(prefManager.getString(PrefManager.KEY_USERID, ""));
-        customer.firstName = binding.edtFullName.getText().toString().trim();
-        customer.email = binding.edtEmail.getText().toString().trim();
-        customer.password = binding.edtPassword.getText().toString().trim();
+            fileToUpload = ImagePicker.Companion.getFile(data);
+            Log.e(TAG, "onActivityResult: " + fileToUpload.getPath());
 
 
-        woocommerce.CustomerRepository().update(Integer.parseInt(prefManager.getString(PrefManager.KEY_USERID, "")), customer).enqueue(new Callback<Customer>() {
-            @Override
-            public void onResponse(Call<Customer> call, Response<Customer> response) {
-                Log.e(TAG, "onResponse: " + response.isSuccessful());
-            }
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.Companion.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-            @Override
-            public void onFailure(Call<Customer> call, Throwable t) {
-                Log.e(TAG, "onResponse: " + t.getMessage());
-            }
-        });
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @NotNull
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+            DatePickerDialog dialog = new DatePickerDialog(getActivity(), this, year, month, day);
+            dialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+            return dialog;
+        }
+
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+
+            Calendar newDate = Calendar.getInstance();
+            newDate.set(year, year, month + 1);
+            binding.edtDob.setText(day + "/" + (month + 1) + "/" + year);
+
+        }
     }
 }

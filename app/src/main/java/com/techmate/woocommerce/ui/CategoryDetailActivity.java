@@ -29,7 +29,7 @@ public class CategoryDetailActivity extends AppCompatActivity implements View.On
     private static final String TAG = "CategoryDetailActivity";
     private ActivityCategoryDetailBinding binding;
     private CategoryPagerAdapter pagerAdapter;
-    private int categoryId;
+    private int categoryId, tabPosition;
     private String categoryTitle;
 
     @Override
@@ -51,6 +51,7 @@ public class CategoryDetailActivity extends AppCompatActivity implements View.On
 
         if (getIntent().getExtras() != null) {
             categoryId = getIntent().getExtras().getInt(Constants.INTENT_CATEGORY_ID,0);
+            tabPosition = getIntent().getExtras().getInt(Constants.INTENT_CATEGORY_POS,0);
             categoryTitle = getIntent().getExtras().getString(Constants.INTENT_CATEGORY_NAME,"");
             binding.txtTitle.setText(categoryTitle);
         }
@@ -83,6 +84,7 @@ public class CategoryDetailActivity extends AppCompatActivity implements View.On
                         binding.viewPager.setAdapter(pagerAdapter);
                         binding.viewPager.setOffscreenPageLimit(pagerAdapter.getCount());
                         binding.tabLayout.setupWithViewPager(binding.viewPager);
+                        binding.viewPager.setCurrentItem(tabPosition);
                     }
                 }
                 binding.frameProgress.setVisibility(View.GONE);

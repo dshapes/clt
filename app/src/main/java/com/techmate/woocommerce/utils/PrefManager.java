@@ -23,8 +23,8 @@ public class PrefManager {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
-    public PrefManager(Context context){
-        if (context != null){
+    public PrefManager(Context context) {
+        if (context != null) {
             sharedPreferences = context.getSharedPreferences(Constants.APP_NAME, Context.MODE_PRIVATE);
             editor = sharedPreferences.edit();
         }
@@ -53,16 +53,25 @@ public class PrefManager {
         editor.commit();
     }
 
-    public void deleteUserPrefData(){
+    public void deleteUserPrefData() {
+
         editor.putString(PrefManager.KEY_USERID, "");
         editor.putString(PrefManager.KEY_USER_TYPE, "");
         editor.putString(PrefManager.KEY_USER_NAME, "");
+        editor.putString(PrefManager.KEY_MOBILE_PHONE, "");
+        editor.putString(PrefManager.KEY_GENDER, "");
+        editor.putString(PrefManager.KEY_DOB, "");
+        editor.putString(PrefManager.KEY_FULL_NAME, "");
+        editor.putString(PrefManager.KEY_FIRST_NAME, "");
+        editor.putString(PrefManager.KEY_LAST_NAME, "");
+        editor.putString(PrefManager.KEY_EMAIL, "");
         editor.putString(PrefManager.KEY_RECEIVE_NOTIFICATION, "");
         editor.commit();
+
     }
 
     public int getInteger(String key, int value) {
-        return sharedPreferences.getInt(key,value);
+        return sharedPreferences.getInt(key, value);
     }
 
 }

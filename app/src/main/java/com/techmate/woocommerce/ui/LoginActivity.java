@@ -145,6 +145,9 @@ public class LoginActivity extends AppCompatActivity implements ViewPresenter.Ma
             if (responseModel.getData().getData_() != null) {
                 if (!TextUtils.isEmpty(responseModel.getData().getData_().getID())) {
                     prefManager.setString(PrefManager.KEY_USERID, responseModel.getData().getData_().getID());
+                    prefManager.setString(PrefManager.KEY_EMAIL, responseModel.getData().getData_().getUserEmail());
+                    prefManager.setString(PrefManager.KEY_FULL_NAME, responseModel.getData().getData_().getDisplayName());
+                    prefManager.setString(PrefManager.KEY_USER_IMAGE, responseModel.getData().getData_().getUserUrl());
                     Utility.startActivity(LoginActivity.this, HomeActivity.class, true);
                 }
             }
@@ -220,6 +223,8 @@ public class LoginActivity extends AppCompatActivity implements ViewPresenter.Ma
 
         } else {
             Utility.printLog(TAG, "handleSignInResult:isSuccess: " + result.isSuccess());
+            Utility.printLog(TAG, "handleSignInResult:isSuccess: " + result.getStatus());
+            Utility.printLog(TAG, "handleSignInResult:isSuccess: " + result.getStatus().getStatusMessage());
         }
 
         hideProgressBar();

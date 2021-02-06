@@ -8,6 +8,9 @@ import com.techmate.woocommerce.model.ProductDetailResponse;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 public interface ViewPresenter {
 
     interface MainView {
@@ -94,5 +97,6 @@ public interface ViewPresenter {
         void getProductDetails(String path);
         void getOffers(String path);
         void updateProfile(String path, Map<String, String> hashMap);
+        void updateProfileImage(RequestBody id, MultipartBody.Part imageFile);
     }
 }

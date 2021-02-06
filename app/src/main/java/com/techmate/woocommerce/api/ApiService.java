@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -49,5 +50,13 @@ public interface ApiService {
 
     @GET("{path}")
     Observable<List<HomeResponse>> getOffers(@Path(value="path", encoded = true) String path, @Query("consumer_key") String ckey, @Query("consumer_secret") String csecret);
+
+    @Multipart
+    @POST(Constants.API_PROFILE)
+    Observable<HomeResponse> uploadProfileImage(@Part("id") RequestBody userId, @Part MultipartBody.Part filePart);
+
+    @POST("{path}")
+    @FormUrlEncoded
+    Observable<HomeResponse> updateProfileImage(@Path(value="path", encoded = true) String path, @FieldMap() Map<String, Object> formData);
 
 }
